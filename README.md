@@ -1,6 +1,6 @@
-# almeerah
+# Almeerah
 
-A new Flutter project.
+A project for Virtual Wardrobe and Closet Organizer.
 
 ## Getting Started
 
