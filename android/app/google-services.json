@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "809850817450",
+    "project_id": "almeerah-ef8ad",
+    "storage_bucket": "almeerah-ef8ad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:809850817450:android:1eef3e9a6f6b1bca96b9d3",
+        "android_client_info": {
+          "package_name": "com.example.almeerah"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "809850817450-3c6hkk15tjppvt1h41aod62fnc1r18lg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBgCZRUD0dmroE-YIYIhvIkjFnEKcV7wE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "809850817450-3c6hkk15tjppvt1h41aod62fnc1r18lg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
