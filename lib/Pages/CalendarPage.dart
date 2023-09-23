@@ -8,7 +8,7 @@ class CalendarPage extends StatefulWidget {
 }
 
 class _CalendarPageState extends State<CalendarPage> {
-  late DateTime selectedDay = DateTime.timestamp();
+  late DateTime selectedDay = DateTime.now();
   List<CleanCalendarEvent> selectedEvent = [];
 
   final Map<DateTime, List<CleanCalendarEvent>> events = {};

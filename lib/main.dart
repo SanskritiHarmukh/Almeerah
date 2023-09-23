@@ -1,7 +1,10 @@
-import 'package:almeerah/CalendarPage.dart';
-import 'package:almeerah/HomePage.dart';
+import 'package:almeerah/Pages/CalendarPage.dart';
+
+import 'package:almeerah/Theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+
+import 'Pages/HomePage.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,6 +25,8 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: BottomTabBar(),
+      theme: lightMode,
+      darkTheme: darkMode,
     );
   }
 }
@@ -42,7 +47,6 @@ class _BottomTabBarState extends State<BottomTabBar> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: screens[_index],
-
         bottomNavigationBar: BottomNavigationBar(
             currentIndex: _index,
             onTap: (value) {
@@ -64,6 +68,8 @@ class _BottomTabBarState extends State<BottomTabBar> {
             ]));
   }
 }
+
+
 
 
 
