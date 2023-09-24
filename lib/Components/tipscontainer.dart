@@ -77,7 +77,9 @@ class tipsContainer extends StatelessWidget {
             ],),
             Row(children: [
                 Text('Significance: ', style: headingStyle,),
-                Text(reason[colorIndex],maxLines: 3,softWrap: true,overflow: TextOverflow.ellipsis,style: paraStyle,)
+                Container(
+                  width: 100,
+                    child: Text(reason[colorIndex],maxLines: 2,softWrap: true,overflow: TextOverflow.ellipsis,style: paraStyle,))
               ],),
 
           ],

@@ -18,18 +18,28 @@ class CustomContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Brightness brightness = MediaQuery.of(context).platformBrightness;
+    final bool isDarkTheme = brightness == Brightness.dark;
+    Color lightShadow, darkShadow;
+    if (isDarkTheme) {
+      lightShadow = Colors.white.withOpacity(.12);// Set dark theme shadow color
+      darkShadow = Colors.black.withOpacity(.85);
+    } else {
+      lightShadow = Colors.white; // Set light theme shadow color
+      darkShadow = Colors.black.withOpacity(0.15);
+    }
     return Container(
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(8),
         boxShadow: [
           BoxShadow(
-            color: Colors.white.withOpacity(.12),
+            color: lightShadow,
             offset: Offset(-5,-5),
             blurRadius: 10,
           ),
           BoxShadow(
-            color: Colors.black.withOpacity(.85),
+            color: darkShadow,
             offset: Offset(5,5),
             blurRadius: 10,
           ),
