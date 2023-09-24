@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:almeerah/Components/customcontainer.dart';
 import 'package:almeerah/Components/tipscontainer.dart';
 import 'package:almeerah/Pages/CalendarPage.dart';
+import 'package:almeerah/Pages/FashionTipsPage.dart';
 import 'package:almeerah/Pages/NGOPage.dart';
 import 'package:flutter/material.dart';
 
@@ -80,6 +81,13 @@ class _HomePageState extends State<HomePage> {
                 child: GestureDetector(onTap: (){
                   Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>NGOPage()));
                 }, child: Text('Contact NGO',style: paraStyle,),
+                ),
+              ),
+              SizedBox(height: 24,),
+              Center(
+                child: GestureDetector(onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>FashionTipsPage()));
+                }, child: Text('Fashion Tips',style: paraStyle,),
                 ),
               )
             ],
