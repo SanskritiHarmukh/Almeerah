@@ -27,7 +27,6 @@ class _CalendarPageState extends State<CalendarPage> {
     for (int month = 1; month <= 12; month++) {
       for (int day = 1; day <= DateTime(year, month + 1, 0).day; day++) {
         final date = DateTime(year, month, day);
-
         List<CleanCalendarEvent> dayEvents = [
           CleanCalendarEvent(
             'Wear this color today!', // Custom message to wear the color
@@ -36,7 +35,6 @@ class _CalendarPageState extends State<CalendarPage> {
             endTime: DateTime(year, month, day),
           ),
         ];
-
         events[date] = dayEvents;
       }
     }
@@ -54,7 +52,6 @@ class _CalendarPageState extends State<CalendarPage> {
   void initState() {
     // Set up events for the year 2023 as an example
     setupEventsForYear(2023);
-
     selectedEvent = events[selectedDay] ?? [];
     super.initState();
   }
@@ -62,17 +59,22 @@ class _CalendarPageState extends State<CalendarPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
         appBar: AppBar(
           title: Text('Calendar'),
           centerTitle: true,
+          backgroundColor: Theme.of(context).colorScheme.background,
+          elevation: 2,
         ),
         body: SafeArea(
           child: Container(
+            padding: EdgeInsets.symmetric(vertical: 20,horizontal: 16),
             child: Calendar(
               startOnMonday: true,
-              selectedColor: Colors.blue,
+              weekDays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+              selectedColor: Theme.of(context).colorScheme.primary.withOpacity(.5),
               todayColor: Colors.red,
-              eventColor: Colors.green,
+              eventColor: Colors.grey,
               eventDoneColor: Colors.amber,
               bottomBarColor: Colors.deepOrange,
               onRangeSelected: (range) {
@@ -85,15 +87,15 @@ class _CalendarPageState extends State<CalendarPage> {
               isExpanded: true,
               dayOfWeekStyle: TextStyle(
                 fontSize: 15,
-                color: Colors.black12,
-                fontWeight: FontWeight.w100,
+                color: Theme.of(context).colorScheme.primary,
+                fontWeight: FontWeight.w600,
               ),
               bottomBarTextStyle: TextStyle(
-                color: Colors.white,
+                color: Colors.blue,
               ),
               hideBottomBar: false,
               hideArrows: false,
-              weekDays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+              
             ),
           ),
         ),
