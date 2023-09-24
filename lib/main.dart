@@ -1,4 +1,5 @@
 import 'package:almeerah/Pages/CalendarPage.dart';
+import 'package:almeerah/Pages/NGOPage.dart';
 import 'package:almeerah/Theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -44,6 +45,7 @@ class _BottomTabBarState extends State<BottomTabBar> {
   final screens = [
     HomePage(),
     CalendarPage(),
+    NGOPage()
   ];
   @override
   Widget build(BuildContext context) {
@@ -66,6 +68,10 @@ class _BottomTabBarState extends State<BottomTabBar> {
               BottomNavigationBarItem(
                 icon: Icon(Icons.calendar_month),
                 label: 'Calendar',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.pages),
+                label: 'NGOs',
               ),
             ]));
   }
