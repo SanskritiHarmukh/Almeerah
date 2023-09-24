@@ -65,7 +65,7 @@ class _CalendarPageState extends State<CalendarPage> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        title: Text('Calendar'),
+        title: Text('Calendar',style: TextStyle(color: Theme.of(context).colorScheme.primary),),
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.background,
         elevation: 2,

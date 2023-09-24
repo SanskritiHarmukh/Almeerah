@@ -75,7 +75,10 @@ class tipsContainer extends StatelessWidget {
               Text("Today's Color: ",style: headingStyle,),
               Text(colornames[colorIndex], style: paraStyle,)
             ],),
-            Row(children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
                 Text('Significance: ', style: headingStyle,),
                 Container(
                   width: 100,
@@ -86,7 +89,6 @@ class tipsContainer extends StatelessWidget {
         ),
       ],
     ),
-        color: Theme.of(context).colorScheme.background,
         width: pageWidth-32,
          vpad: 16, hpad: 16);
   }
