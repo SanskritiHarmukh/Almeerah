@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomContainer extends StatelessWidget {
   final Widget? child;
-  final Color? color;
+  //final Color? color;
   final double width;
   //final double height;
   final double vpad;
@@ -10,7 +10,7 @@ class CustomContainer extends StatelessWidget {
 
   const CustomContainer({Key? key,
     required this.child,
-    required this.color,
+    //required this.color,
     required this.width,
     //required this.height,
     required this.vpad,
@@ -23,14 +23,14 @@ class CustomContainer extends StatelessWidget {
     Color lightShadow, darkShadow;
     if (isDarkTheme) {
       lightShadow = Colors.white.withOpacity(.12);// Set dark theme shadow color
-      darkShadow = Colors.black.withOpacity(.85);
+      darkShadow = Colors.black.withOpacity(.90);
     } else {
-      lightShadow = Colors.white; // Set light theme shadow color
+      lightShadow = Colors.grey.shade100; // Set light theme shadow color
       darkShadow = Colors.black.withOpacity(0.15);
     }
     return Container(
       decoration: BoxDecoration(
-        color: color,
+        color: Theme.of(context).colorScheme.background,
         borderRadius: BorderRadius.circular(8),
         boxShadow: [
           BoxShadow(

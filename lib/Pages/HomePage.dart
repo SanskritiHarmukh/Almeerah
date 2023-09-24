@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Theme.of(context).colorScheme.background,
         title: Text("Allmeerah",style: TextStyle(color: Theme.of(context).colorScheme.primary),),
         centerTitle: true,
-        leading: Icon(Icons.menu),
+        leading: Icon(Icons.menu,color: Theme.of(context).colorScheme.primary,),
       ),
       backgroundColor: Theme.of(context).colorScheme.background,
       body: SafeArea(
@@ -73,7 +73,6 @@ class _HomePageState extends State<HomePage> {
                   Text("Today's Color"),
                 ],
               ),
-                  color: Theme.of(context).colorScheme.background,
                   width: pageWidth-32,
                    vpad: 8, hpad: 32),
               SizedBox(height: 24,),
