@@ -1,15 +1,17 @@
 import 'package:almeerah/Pages/CalendarPage.dart';
 import 'package:almeerah/Pages/NGOPage.dart';
-
 import 'package:almeerah/Theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/services.dart';
 
 import 'Pages/HomePage.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   runApp(MyApp());
 }
 
@@ -25,7 +27,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: BottomTabBar(),
+      home: HomePage(),
       theme: lightMode,
       darkTheme: darkMode,
     );

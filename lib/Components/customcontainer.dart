@@ -4,7 +4,7 @@ class CustomContainer extends StatelessWidget {
   final Widget? child;
   final Color? color;
   final double width;
-  final double height;
+  //final double height;
   final double vpad;
   final double hpad;
 
@@ -12,7 +12,7 @@ class CustomContainer extends StatelessWidget {
     required this.child,
     required this.color,
     required this.width,
-    required this.height,
+    //required this.height,
     required this.vpad,
     required this.hpad}) : super(key: key);
 
@@ -24,19 +24,19 @@ class CustomContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
         boxShadow: [
           BoxShadow(
-            color: Colors.white.withOpacity(0.25),
+            color: Colors.white.withOpacity(.12),
             offset: Offset(-5,-5),
-            blurRadius: 15,
+            blurRadius: 10,
           ),
           BoxShadow(
-            color: Colors.grey.shade900,
+            color: Colors.black.withOpacity(.85),
             offset: Offset(5,5),
-            blurRadius: 15,
+            blurRadius: 10,
           ),
         ]
       ),
       width: width,
-      height: height,
+      //height: height,
       padding: EdgeInsets.symmetric(vertical: vpad,horizontal: hpad),
       child: child,
     );
