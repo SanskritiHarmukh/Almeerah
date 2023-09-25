@@ -46,20 +46,25 @@ class _FashionTipsPageState extends State<FashionTipsPage> {
                           onTap: (){
                             String heading = snapshot.child('heading').value.toString();
                             String description = snapshot.child('description').value.toString();
+                            String image = snapshot.child('imageUrl').value.toString();
                             Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>ArticlePage(
                               heading: heading,
-                              description: description,)));
+                              description: description,
+                            image: image,)));
                           },
                           child: Column(
                             children: [
                               Container(
+                                width: w-64,
+                                height: h*.2,
                                 alignment:Alignment.center,
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8),
-                                    child: Image.asset('assets/images/random.png',fit: BoxFit.fill,)),
-                                // child: FadeInImage.assetNetwork(
-                                //   placeholder: 'images/random.png',
-                                //   image: snapshot.child('imageURL').value.toString(),),
+                                    child: FadeInImage.assetNetwork(
+                                  placeholder: 'assets/images/random.png',
+                                  image: snapshot.child('imageUrl').value.toString(),
+                                    ),),
+
 
                                 // decoration: BoxDecoration(
                                 //   borderRadius: BorderRadius.circular(20),

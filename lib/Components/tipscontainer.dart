@@ -1,10 +1,37 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'customcontainer.dart';
 
-class tipsContainer extends StatelessWidget {
+class tipsContainer extends StatefulWidget {
   const tipsContainer({Key? key}) : super(key: key);
 
+  @override
+  State<tipsContainer> createState() => _tipsContainerState();
+}
+
+class _tipsContainerState extends State<tipsContainer> {
+  StreamController<DateTime> _timeController = StreamController.broadcast();
+  late Timer _timer;
+  @override
+  void initState() {
+    super.initState();
+    // Set up a periodic timer to update the time variable at midnight (00:00:00)
+    _timer = Timer.periodic(Duration(days: 1), (Timer timer) {
+      final now = DateTime.now();
+      if (now.hour == 0 && now.minute == 0 && now.second == 0) {
+        _timeController.add(now);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    _timeController.close();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
    TextStyle headingStyle = TextStyle(

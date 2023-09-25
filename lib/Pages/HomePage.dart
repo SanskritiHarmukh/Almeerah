@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Container(width: 32,height: 32,color: Color(0xff33FFEC),),
                   SizedBox(width: 32,),
-                  Text("Today's Color"),
+                  Text("Today's outfit"),
                 ],
               ),
                   width: pageWidth-32,
@@ -80,14 +80,28 @@ class _HomePageState extends State<HomePage> {
               Center(
                 child: GestureDetector(onTap: (){
                   Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>NGOPage()));
-                }, child: Text('Contact NGO',style: paraStyle,),
+                }, child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Contact NGO',style: paraStyle,),
+                    SizedBox(width: 12,),
+                    Icon(Icons.arrow_forward_ios_rounded,color: Theme.of(context).colorScheme.primary,size: 16,)
+                  ],
+                ),
                 ),
               ),
               SizedBox(height: 24,),
               Center(
                 child: GestureDetector(onTap: (){
                   Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>FashionTipsPage()));
-                }, child: Text('Fashion Tips',style: paraStyle,),
+                }, child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Fashion Tips',style: paraStyle,),
+                    SizedBox(width: 12,),
+                    Icon(Icons.arrow_forward_ios_rounded,color: Theme.of(context).colorScheme.primary,size: 16,)
+                  ],
+                ),
                 ),
               )
             ],
