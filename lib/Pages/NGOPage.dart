@@ -57,7 +57,7 @@ class _NGOPageState extends State<NGOPage> {
                               // ),
                               //padding: EdgeInsets.symmetric(vertical: 15,horizontal: 15),
                             ),
-                            SizedBox(height: 10,),
+                            SizedBox(height: 16,),
                             Container(
                               alignment:Alignment.center,
                               child: Text(snapshot
@@ -71,7 +71,7 @@ class _NGOPageState extends State<NGOPage> {
                               // ),
                               // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 15),
                             ),
-                            SizedBox(height: 10,),
+                            SizedBox(height: 8,),
                             Container(
                               alignment:Alignment.center,
                               child: Text(snapshot
@@ -85,7 +85,7 @@ class _NGOPageState extends State<NGOPage> {
                               // ),
                               // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 15),
                             ),
-                            SizedBox(height: 10,),
+                            SizedBox(height: 16,),
                             Link(
                               target: LinkTarget.self,
                               uri: Uri.parse("snapshot.child('website').value.toString()"),
