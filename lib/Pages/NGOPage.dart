@@ -45,13 +45,14 @@ class _NGOPageState extends State<NGOPage> {
                         child: Column(
                           children: [
                             Container(
-                              width: w-64,
-                              height: h*.2,
+                              width: 64,
+                              height: 64,
                               alignment:Alignment.center,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(8),
                                 child: FadeInImage.assetNetwork(
-                                  placeholder: 'assets/images/random.png',
+                                  fit: BoxFit.cover,
+                                  placeholder: 'assets/images/placeholder.png',
                                   image: snapshot.child('image').value.toString(),
                                 ),),
                             ),

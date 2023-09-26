@@ -61,7 +61,7 @@ class _FashionTipsPageState extends State<FashionTipsPage> {
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8),
                                     child: FadeInImage.assetNetwork(
-                                  placeholder: 'assets/images/random.png',
+                                  placeholder: 'assets/images/placeholder.png',
                                   image: snapshot.child('imageUrl').value.toString(),
                                     ),),
 
