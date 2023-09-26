@@ -45,17 +45,24 @@ class _NGOPageState extends State<NGOPage> {
                         child: Column(
                           children: [
                             Container(
+                              width: w-64,
+                              height: h*.2,
+                              alignment:Alignment.center,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: FadeInImage.assetNetwork(
+                                  placeholder: 'assets/images/random.png',
+                                  image: snapshot.child('image').value.toString(),
+                                ),),
+                            ),
+                            SizedBox(height: 16,),
+                            Container(
                               alignment:Alignment.center,
                               child: Text(snapshot
                                   .child('name')
                                   .value
                                   .toString(),
                                 style: headingtextStyle,textAlign: TextAlign.center,),
-                              // decoration: BoxDecoration(
-                              //   borderRadius: BorderRadius.circular(20),
-                              //   color: Colors.teal,
-                              // ),
-                              //padding: EdgeInsets.symmetric(vertical: 15,horizontal: 15),
                             ),
                             SizedBox(height: 16,),
                             Container(
@@ -65,11 +72,6 @@ class _NGOPageState extends State<NGOPage> {
                                   .value
                                   .toString(),
                                 style: paratextStyle,textAlign: TextAlign.center,),
-                              // decoration: BoxDecoration(
-                              //   borderRadius: BorderRadius.circular(20),
-                              //   color: Colors.black12,
-                              // ),
-                              // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 15),
                             ),
                             SizedBox(height: 8,),
                             Container(
@@ -79,11 +81,6 @@ class _NGOPageState extends State<NGOPage> {
                                   .value
                                   .toString(),
                                 style: paratextStyle,textAlign: TextAlign.center,),
-                              // decoration: BoxDecoration(
-                              //   borderRadius: BorderRadius.circular(20),
-                              //   color: Colors.black12,
-                              // ),
-                              // padding: EdgeInsets.symmetric(vertical: 15,horizontal: 15),
                             ),
                             SizedBox(height: 16,),
                             Link(
