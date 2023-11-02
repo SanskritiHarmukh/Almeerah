@@ -18,7 +18,6 @@ class _NGOPageState extends State<NGOPage> {
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
-    double h = MediaQuery.of(context).size.height;
     TextStyle headingtextStyle = TextStyle(color: Theme.of(context).colorScheme.primary,
         fontWeight: FontWeight.w900,fontSize: 16);
     TextStyle paratextStyle = TextStyle(color: Theme.of(context).colorScheme.primary,
