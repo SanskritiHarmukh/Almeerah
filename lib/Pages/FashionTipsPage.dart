@@ -1,3 +1,4 @@
+import 'package:almeerah/Components/customTextstyle.dart';
 import 'package:almeerah/Pages/ArticlePage.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
@@ -19,10 +20,7 @@ class _FashionTipsPageState extends State<FashionTipsPage> {
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
     double h = MediaQuery.of(context).size.height;
-    TextStyle headingtextStyle = TextStyle(color: Theme.of(context).colorScheme.primary,
-        fontWeight: FontWeight.w900,fontSize: 16);
-    TextStyle paratextStyle = TextStyle(color: Theme.of(context).colorScheme.primary,
-        fontWeight: FontWeight.w400,fontSize: 12);
+
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
@@ -79,7 +77,7 @@ class _FashionTipsPageState extends State<FashionTipsPage> {
                                     .child('heading')
                                     .value
                                     .toString(),
-                                  style: headingtextStyle,textAlign: TextAlign.center,),
+                                  style: CustomTextStyles.headingTextStyle(context),textAlign: TextAlign.center,),
                                 // decoration: BoxDecoration(
                                 //   borderRadius: BorderRadius.circular(20),
                                 //   color: Colors.black12,
@@ -93,7 +91,7 @@ class _FashionTipsPageState extends State<FashionTipsPage> {
                                     .child('description')
                                     .value
                                     .toString(),
-                                  style: paratextStyle,textAlign: TextAlign.left,maxLines: 4,overflow: TextOverflow.ellipsis,),
+                                  style: CustomTextStyles.paragraphTextStyle(context),textAlign: TextAlign.left,maxLines: 4,overflow: TextOverflow.ellipsis,),
                                 // decoration: BoxDecoration(
                                 //   borderRadius: BorderRadius.circular(20),
                                 //   color: Colors.black12,

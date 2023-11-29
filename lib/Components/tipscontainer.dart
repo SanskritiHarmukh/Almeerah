@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:almeerah/Components/customTextstyle.dart';
 import 'package:flutter/material.dart';
 
 import 'customcontainer.dart';
@@ -34,16 +35,7 @@ class _tipsContainerState extends State<tipsContainer> {
   }
   @override
   Widget build(BuildContext context) {
-   TextStyle headingStyle = TextStyle(
-      color: Theme.of(context).colorScheme.primary,
-     fontWeight:FontWeight.w400,
-     fontSize: 12
-    );
-   TextStyle paraStyle = TextStyle(
-       color: Theme.of(context).colorScheme.primary,
-       fontWeight:FontWeight.w900,
-       fontSize: 12
-   );
+
     double pageWidth = MediaQuery.of(context).size.width;
     double pageHeight = MediaQuery.of(context).size.height;
     final List<Color> colors = [
@@ -99,17 +91,18 @@ class _tipsContainerState extends State<tipsContainer> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(children: [
-              Text("Today's Color: ",style: headingStyle,),
-              Text(colornames[colorIndex], style: paraStyle,)
+              Text("Today's Color: ",style: CustomTextStyles.paragraphTextStyle(context),),
+              Text(colornames[colorIndex], style: CustomTextStyles.paragraphTextStyle(context),)
             ],),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Significance: ', style: headingStyle,),
+                Text('Significance: ', style: CustomTextStyles.paragraphTextStyle(context),),
                 Container(
                   width: 100,
-                    child: Text(reason[colorIndex],maxLines: 2,softWrap: true,overflow: TextOverflow.ellipsis,style: paraStyle,))
+                    child: Text(reason[colorIndex],maxLines: 2,softWrap: true,overflow: TextOverflow.ellipsis,
+                      style: CustomTextStyles.paragraphTextStyle(context),))
               ],),
 
           ],
