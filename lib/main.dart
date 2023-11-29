@@ -1,4 +1,6 @@
 import 'package:almeerah/Pages/CalendarPage.dart';
+import 'package:almeerah/Pages/LoginPage.dart';
+import 'package:almeerah/auth/MainPage.dart';
 import 'package:almeerah/Pages/NGOPage.dart';
 import 'package:almeerah/Theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +29,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: MainPage(),
       theme: lightMode,
       darkTheme: darkMode,
     );

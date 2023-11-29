@@ -1,11 +1,13 @@
 import 'dart:math';
 
+import 'package:almeerah/Components/customTextstyle.dart';
 import 'package:almeerah/Components/customcontainer.dart';
 import 'package:almeerah/Components/tipscontainer.dart';
 import 'package:almeerah/Pages/CalendarPage.dart';
 import 'package:almeerah/Pages/FashionTipsPage.dart';
 import 'package:almeerah/Pages/NGOPage.dart';
 import 'package:almeerah/Pages/ZodiacOutfit.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,23 +23,24 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     double pageWidth = MediaQuery.of(context).size.width;
     double pageHeight = MediaQuery.of(context).size.height;
-    TextStyle headingStyle = TextStyle(
-        color: Theme.of(context).colorScheme.primary,
-        fontWeight:FontWeight.w500,
-        fontSize: 20
-    );
-    TextStyle paraStyle = TextStyle(
-        color: Theme.of(context).colorScheme.primary,
-        fontWeight:FontWeight.w400,
-        fontSize: 16
-    );
+
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
         backgroundColor: Theme.of(context).colorScheme.background,
-        title: Text("Allmeerah",style: TextStyle(color: Theme.of(context).colorScheme.primary),),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Icon(Icons.menu,color: Theme.of(context).colorScheme.primary,),
+            Text("Allmeerah",style: TextStyle(color: Theme.of(context).colorScheme.primary),),
+            GestureDetector(
+                onTap: (){
+                  FirebaseAuth.instance.signOut();
+                },
+                child: Icon(Icons.logout_outlined,color: Theme.of(context).colorScheme.primary,)),
+          ],
+        ),
         centerTitle: true,
-        leading: Icon(Icons.menu,color: Theme.of(context).colorScheme.primary,),
       ),
       backgroundColor: Theme.of(context).colorScheme.background,
       body: SafeArea(
@@ -47,18 +50,18 @@ class _HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Tip of the day',style: headingStyle,),
+              Text('Tip of the day',style: CustomTextStyles.headingTextStyle(context),),
               SizedBox(height: 16,),
               tipsContainer(),
               SizedBox(height: 24,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                Text('OOTD',style: headingStyle,),
+                Text('OOTD',style:CustomTextStyles.headingTextStyle(context),),
                 GestureDetector(
                   child: Row(
                     children: [
-                      Text('Outfit Calender',style: paraStyle,),
+                      Text('Outfit Calender',style: CustomTextStyles.paragraphTextStyle(context),),
                       SizedBox(width: 8,),
                       Icon(Icons.arrow_forward_outlined,size: 16,),
                     ],),
@@ -84,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                 }, child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Zodiac Preferences',style: paraStyle,),
+                    Text('Zodiac Preferences',style: CustomTextStyles.paragraphTextStyle(context),),
                     SizedBox(width: 12,),
                     Icon(Icons.arrow_forward_ios_rounded,color: Theme.of(context).colorScheme.primary,size: 16,)
                   ],
@@ -98,7 +101,7 @@ class _HomePageState extends State<HomePage> {
                 }, child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Contact NGO',style: paraStyle,),
+                    Text('Contact NGO',style: CustomTextStyles.paragraphTextStyle(context),),
                     SizedBox(width: 12,),
                     Icon(Icons.arrow_forward_ios_rounded,color: Theme.of(context).colorScheme.primary,size: 16,)
                   ],
@@ -112,7 +115,7 @@ class _HomePageState extends State<HomePage> {
                 }, child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Fashion Tips',style: paraStyle,),
+                    Text('Fashion Tips',style: CustomTextStyles.paragraphTextStyle(context),),
                     SizedBox(width: 12,),
                     Icon(Icons.arrow_forward_ios_rounded,color: Theme.of(context).colorScheme.primary,size: 16,)
                   ],
