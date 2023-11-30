@@ -1,5 +1,8 @@
 import 'package:almeerah/Pages/CalendarPage.dart';
+import 'package:almeerah/Pages/FashionTipsPage.dart';
+import 'package:almeerah/Pages/FavPage.dart';
 import 'package:almeerah/Pages/LoginPage.dart';
+import 'package:almeerah/Pages/MyCloset.dart';
 import 'package:almeerah/auth/MainPage.dart';
 import 'package:almeerah/Pages/NGOPage.dart';
 import 'package:almeerah/Theme/theme.dart';
@@ -8,6 +11,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 
 import 'Pages/HomePage.dart';
+import 'Pages/ZodiacOutfit.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,6 +34,14 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: MainPage(),
+      routes: {
+        '/fashion': (context) => FashionTipsPage(),
+        '/ngo': (context) => NGOPage(),
+        '/ootd': (context) => CalendarPage(),
+        '/zodiac': (context) => ZodiacOutfit(),
+        '/fav': (context) => FavPage(),
+        '/closet': (context) => MyCloset(),
+      },
       theme: lightMode,
       darkTheme: darkMode,
     );

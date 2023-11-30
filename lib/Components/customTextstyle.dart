@@ -16,6 +16,13 @@ class CustomTextStyles {
             fontSize: 16
     );
   }
+  static TextStyle categoryTextStyle(BuildContext context) {
+    return TextStyle(
+        color: Theme.of(context).colorScheme.primary,
+        fontWeight:FontWeight.w400,
+        fontSize: 12
+    );
+  }
 
 }
 

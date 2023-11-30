@@ -1,5 +1,6 @@
 import 'package:almeerah/Pages/LoginPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '../Components/customTextstyle.dart';
@@ -21,9 +22,27 @@ class _RegistrationPageState extends State<RegistrationPage> {
   final _confirmpasswordcontroller = TextEditingController();
   Future SignUp() async{
    if (confirmedpassword()){
-     await FirebaseAuth.instance.createUserWithEmailAndPassword(
+     // await FirebaseAuth.instance.createUserWithEmailAndPassword(
+     //     email: _emailcontroller.text.trim(),
+     //     password: _passwordcontroller.text.trim());
+     try {
+       UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
          email: _emailcontroller.text.trim(),
-         password: _passwordcontroller.text.trim());
+         password: _passwordcontroller.text.trim(),
+       );
+       String? uid = userCredential.user?.uid;
+       if (uid != null) {
+         await FirebaseFirestore.instance.collection('users').doc(uid).set({
+           'email': _emailcontroller.text.trim(),
+
+         });
+         //creating a sub collection for my wardrobe details
+         CollectionReference myWardrobeCollection = FirebaseFirestore.instance.collection('users').doc(uid).collection('mywardrobe');
+       }
+     } catch (e) {
+       print('Error during registration: $e');
+       // Handle registration errors
+     }
    }
   }
   bool confirmedpassword(){
