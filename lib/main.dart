@@ -1,7 +1,7 @@
 import 'package:almeerah/Pages/CalendarPage.dart';
 import 'package:almeerah/Pages/FashionTipsPage.dart';
 import 'package:almeerah/Pages/FavPage.dart';
-import 'package:almeerah/Pages/LoginPage.dart';
+import 'package:almeerah/auth/LoginPage.dart';
 import 'package:almeerah/Pages/MyCloset.dart';
 import 'package:almeerah/auth/MainPage.dart';
 import 'package:almeerah/Pages/NGOPage.dart';
@@ -41,6 +41,7 @@ class _MyAppState extends State<MyApp> {
         '/zodiac': (context) => ZodiacOutfit(),
         '/fav': (context) => FavPage(),
         '/closet': (context) => MyCloset(),
+        '/login': (context) => LoginPage(),
       },
       theme: lightMode,
       darkTheme: darkMode,

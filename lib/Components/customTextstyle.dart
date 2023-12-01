@@ -23,6 +23,13 @@ class CustomTextStyles {
         fontSize: 12
     );
   }
+  static TextStyle actionTextStyle(BuildContext context) {
+    return TextStyle(
+        color: Theme.of(context).colorScheme.primary,
+        fontWeight:FontWeight.w400,
+        fontSize: 16
+    );
+  }
 
 }
 

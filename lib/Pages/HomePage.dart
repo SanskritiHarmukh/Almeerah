@@ -35,8 +35,12 @@ class _HomePageState extends State<HomePage> {
             Icon(Icons.menu,color: Theme.of(context).colorScheme.primary,),
             Text("Allmeerah",style: TextStyle(color: Theme.of(context).colorScheme.primary),),
             GestureDetector(
-                onTap: (){
+                onTap: () async {
                   FirebaseAuth.instance.signOut();
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                    '/login',
+                        (Route<dynamic> route) => false,
+                  );
                 },
                 child: Icon(Icons.logout_outlined,color: Theme.of(context).colorScheme.primary,)),
           ],
@@ -47,9 +51,9 @@ class _HomePageState extends State<HomePage> {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16,vertical: 16),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: ListView(
+            // mainAxisAlignment: MainAxisAlignment.start,
+            // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('Tip of the day',style: CustomTextStyles.headingTextStyle(context),),
               SizedBox(height: 16,),
@@ -125,6 +129,7 @@ class _HomePageState extends State<HomePage> {
               // ),
               // SizedBox(height: 24,),
               Container(
+                width: pageWidth,
                 height: 128,
                 child: ListView(
                   scrollDirection: Axis.horizontal,

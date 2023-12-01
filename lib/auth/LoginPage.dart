@@ -1,13 +1,14 @@
 import 'package:almeerah/Components/customTextstyle.dart';
 import 'package:almeerah/Components/customcontainer.dart';
 import 'package:almeerah/Components/textfielddecoration.dart';
-import 'package:almeerah/Pages/RegisterPage.dart';
+import 'package:almeerah/auth/OnboardingPage1.dart';
+import 'package:almeerah/auth/RegisterPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
-  final VoidCallback showRegisterPage;
-  const LoginPage({super.key, required this.showRegisterPage});
+
+  const LoginPage({super.key, });
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
@@ -97,7 +98,10 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: 32,),
                 //signup text
                 GestureDetector(
-                  onTap: widget.showRegisterPage,
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>OnboardingPage1()));
+                  },
+                  // widget.showRegisterPage,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
