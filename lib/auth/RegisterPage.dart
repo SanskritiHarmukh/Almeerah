@@ -1,4 +1,4 @@
-import 'package:almeerah/Pages/LoginPage.dart';
+import 'package:almeerah/auth/LoginPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -6,10 +6,14 @@ import 'package:flutter/material.dart';
 import '../Components/customTextstyle.dart';
 import '../Components/customcontainer.dart';
 import '../Components/textfielddecoration.dart';
+import '../Pages/HomePage.dart';
 
 class RegistrationPage extends StatefulWidget {
-  final VoidCallback showLoginPage;
-  const RegistrationPage({super.key, required this.showLoginPage});
+  final String firstName;
+  final String lastName;
+  final String gender;
+  final List<String> stylePreference;
+  const RegistrationPage({super.key, required this.firstName, required this.lastName, required this.gender, required this.stylePreference,});
 
   @override
   State<RegistrationPage> createState() => _RegistrationPageState();
@@ -34,10 +38,17 @@ class _RegistrationPageState extends State<RegistrationPage> {
        if (uid != null) {
          await FirebaseFirestore.instance.collection('users').doc(uid).set({
            'email': _emailcontroller.text.trim(),
-
+           'firstname' : widget.firstName,
+           'lastname' : widget.lastName,
+           'gender' : widget.gender,
+           'stylepreference' : widget.stylePreference,
          });
          //creating a sub collection for my wardrobe details
          CollectionReference myWardrobeCollection = FirebaseFirestore.instance.collection('users').doc(uid).collection('mywardrobe');
+         Navigator.pushAndRemoveUntil(
+           context,
+           MaterialPageRoute(builder: (BuildContext context) => HomePage()),(Route<dynamic> route) => false,
+         );
        }
      } catch (e) {
        print('Error during registration: $e');
@@ -66,16 +77,31 @@ class _RegistrationPageState extends State<RegistrationPage> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       body: SafeArea(
-        child: Center(
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: 12),
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(height: 32,),
-                Text('Hello!',
+                SizedBox(height: 8,),
+                GestureDetector(
+                    onTap: (){
+                      Navigator.pop(context);
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(Icons.chevron_left_outlined),
+                        SizedBox(width: 4,),
+                        Text('Back',style: CustomTextStyles.actionTextStyle(context),)
+                      ],
+                    ),
+                ),
+                SizedBox(height: 80,),
+                Text('Credentials',
                   style: CustomTextStyles.headingTextStyle(context),textAlign: TextAlign.center,),
                 SizedBox(height: 8,),
-                Text('Great Choice, we are all ready to help you.',
+                Text('These credentials will be used to login in future.',
                   style: CustomTextStyles.paragraphTextStyle(context),textAlign: TextAlign.center,),
                 SizedBox(height: 32,),
                 //email text field
@@ -120,7 +146,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 //signup in button
                 GestureDetector(
                   onTap: SignUp,
-                  child: CustomContainer(child: Text('Sign In',textAlign: TextAlign.center,),
+                  child: CustomContainer(child: Text('Create Account',textAlign: TextAlign.center,),
                       width: pageWidth-32,
                       vpad: 16,
                       hpad: 12),
@@ -128,7 +154,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 SizedBox(height: 32,),
                 //login text
                 GestureDetector(
-                  onTap: widget.showLoginPage,
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>LoginPage()));
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -137,6 +165,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     ],
                   ),
                 ),
+
               ],
             ),
           ),
