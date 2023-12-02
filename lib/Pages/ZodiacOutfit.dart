@@ -1,3 +1,4 @@
+import 'package:almeerah/Components/customTextstyle.dart';
 import 'package:flutter/material.dart';
 
 class ZodiacOutfit extends StatefulWidget {
@@ -217,29 +218,47 @@ class _ZodiacOutfitState extends State<ZodiacOutfit> {
 
   @override
   Widget build(BuildContext context) {
+    double pageWidth = MediaQuery.of(context).size.width;
+    double pageHeight = MediaQuery.of(context).size.height;
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
+        elevation: 2,
+       backgroundColor: Theme.of(context).colorScheme.background,
         title: Text("Zodiac Outfit and Horoscope"),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: ListView(
+          padding: EdgeInsets.symmetric(horizontal: 16,vertical: 32),
           children: <Widget>[
-            DropdownButton<String>(
-              value: selectedZodiacSign,
-              items: zodiacData.keys.map((String zodiac) {
-                return DropdownMenuItem<String>(
-                  value: zodiac,
-                  child: Text(zodiac),
-                );
-              }).toList(),
-              onChanged: (String? newZodiacSign) {
-                if (newZodiacSign != null) {
-                  setState(() {
-                    selectedZodiacSign = newZodiacSign;
-                  });
-                }
-              },
+            Container(
+              width: pageWidth-64,
+              padding: EdgeInsets.symmetric(horizontal: 12,vertical: 4),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(color: Theme.of(context).colorScheme.primary.withOpacity(.5),)
+              ),
+              child: DropdownButton<String>(
+                isExpanded: true,
+                underline: SizedBox(),
+                menuMaxHeight: pageHeight/2,
+                borderRadius: BorderRadius.circular(8),
+                dropdownColor: Theme.of(context).colorScheme.background,
+                value: selectedZodiacSign,
+                items: zodiacData.keys.map((String zodiac) {
+                  return DropdownMenuItem<String>(
+                    value: zodiac,
+                    child: Text(zodiac),
+                  );
+                }).toList(),
+                onChanged: (String? newZodiacSign) {
+                  if (newZodiacSign != null) {
+                    setState(() {
+                      selectedZodiacSign = newZodiacSign;
+                    });
+                  }
+                },
+              ),
             ),
             SizedBox(height: 20),
             // Display the list of colors horizontally
@@ -277,34 +296,41 @@ class _ZodiacOutfitState extends State<ZodiacOutfit> {
             SizedBox(height: 20),
             Text(
               "Outfit Recommendations for $selectedZodiacSign:",
-              style: TextStyle(fontSize: 20),
+              style: CustomTextStyles.headingTextStyle(context),
+              textAlign: TextAlign.center,
             ),
+            SizedBox(height: 4),
             Text(
               zodiacData[selectedZodiacSign] ??
                   "No outfit recommendations available for this zodiac sign.",
-              style: TextStyle(fontSize: 16),
+              style: CustomTextStyles.paragraphTextStyle(context),
+              textAlign: TextAlign.center,
             ),
-            SizedBox(height: 20),
-            Center(
-              child: Text(
-                "Daily Horoscope for $selectedZodiacSign:",
-                style: TextStyle(fontSize: 20),
-              ),
+            SizedBox(height: 24),
+            Text(
+              "Daily Horoscope for $selectedZodiacSign:",
+              style: CustomTextStyles.headingTextStyle(context),
+              textAlign: TextAlign.center,
             ),
+            SizedBox(height: 4),
             Text(
               dailyHoroscope[selectedZodiacSign]?["Monday"] ??
                   "No horoscope available for this day.",
-              style: TextStyle(fontSize: 16),
+              style:CustomTextStyles.paragraphTextStyle(context),
+              textAlign: TextAlign.center,
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 24),
             Text(
               "Mood for $selectedZodiacSign:",
-              style: TextStyle(fontSize: 20),
+              style: CustomTextStyles.headingTextStyle(context),
+              textAlign: TextAlign.center,
             ),
+            SizedBox(height: 4),
             Text(
               moodData[selectedZodiacSign] ??
                   "Mood information not available for this sign.",
-              style: TextStyle(fontSize: 16),
+              style: CustomTextStyles.paragraphTextStyle(context),
+              textAlign: TextAlign.center,
             ),
           ],
         ),

@@ -16,8 +16,15 @@ class OnboardingPage1 extends StatefulWidget {
 class _OnboardingPage1State extends State<OnboardingPage1> {
   final _firstNamecontroller = TextEditingController();
   final _lastNamecontroller = TextEditingController();
+
   String selectedGender = '';
-  List<String> genderOptions = ['Male', 'Female', 'Non-Binary', 'Other'];
+  List<String> genderOptions = ['Male', 'Female', 'Other', 'Prefer Not to Say'];
+  @override
+  void dispose(){
+    _firstNamecontroller.dispose();
+    _lastNamecontroller.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
