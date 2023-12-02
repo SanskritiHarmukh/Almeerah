@@ -19,9 +19,34 @@ class _LoginPageState extends State<LoginPage> {
   final _passwordcontroller = TextEditingController();
   //login function
   Future logIn() async{
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
+    // await FirebaseAuth.instance.signInWithEmailAndPassword(
+    //     email: _emailcontroller.text.trim(),
+    //     password: _passwordcontroller.text.trim());
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: _emailcontroller.text.trim(),
-        password: _passwordcontroller.text.trim());
+        password: _passwordcontroller.text.trim(),
+      );
+    } catch (e) {
+      // login errors
+      String errorMessage = 'Error logging in. Please check your credentials.';
+      if (e is FirebaseAuthException) {
+        if (e.code == 'user-not-found') {
+          errorMessage = 'No user found with this email.';
+        } else if (e.code == 'wrong-password') {
+          errorMessage = 'Invalid password.';
+        }
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(.5),
+          behavior: SnackBarBehavior.floating,
+         margin: EdgeInsets.symmetric(horizontal: 16,vertical: 8),
+          content: Text(errorMessage),
+          duration: Duration(seconds: 3),
+        ),
+      );
+    }
   }
   //dispose controller after use
   @override
