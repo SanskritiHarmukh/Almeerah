@@ -15,7 +15,7 @@ class CustomListTile extends StatelessWidget {
       leading: Icon(icon),
       title: Text(pageName,style: CustomTextStyles.paragraphTextStyle(context),),
       onTap: (){
-        Navigator.pushNamed(context, pageRouteName);
+        Navigator.pushReplacementNamed(context, pageRouteName);
       },
     );
   }

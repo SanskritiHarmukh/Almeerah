@@ -1,0 +1,503 @@
+ [
+      {
+        "id": "1",
+        "image_url": "https://i.pinimg.com/564x/c1/87/db/c187db70963d59b07759d63ce13e4e3f.jpg",
+        "style": ["casual", "formal"],
+        "pattern": ["stripe", "solid"],
+        "color": ["blue", "black"],
+        "occasion": ["office", "formal"],
+        "type": ["top","bottom","shirt"],
+        "material": ["cotton", "linen"]
+      },
+   {
+     "id": "2",
+     "image_url": "https://i.pinimg.com/564x/ef/52/50/ef525037f8d8a87c39f8f293006ce4a8.jpg",
+     "style": ["casual", "casual street"],
+     "pattern": ["plain", "solid"],
+     "color": ["blue", "white"],
+     "occasion": ["office", "formal"],
+     "type": ["top","bottom","shirt","jeans"],
+     "material": ["cotton", "denim","linen"]
+   },
+   {
+     "id": "3",
+     "image_url": "https://i.pinimg.com/564x/ce/10/be/ce10be35a994d3949d27d17435fbe9e7.jpg",
+     "style": ["casual", "formal","modern","business casual"],
+     "pattern": ["plain", "solid"],
+     "color": ["black", "white"],
+     "occasion": ["office", "Business Casual"],
+     "type": ["Top","Bottom","Shirt"],
+     "material": ["cotton", "linen","wool"]
+   },
+   {
+     "id": "4",
+     "image_url": "https://i.pinimg.com/564x/0e/57/5f/0e575f226664e832041a4834c8183326.jpg",
+     "style": ["casual", "formal","modern","modest"],
+     "pattern": ["plain", "solid"],
+     "color": ["blue", "white","brown"],
+     "occasion": ["office", "casual","date night"],
+     "type": ["top","bottom","shirt"],
+     "material": ["cotton", "linen","denim","wool"]
+   },
+   {
+     "id": "5",
+     "image_url": "https://i.pinimg.com/564x/3b/be/d3/3bbed3609dd5147062863bf99c060931.jpg",
+     "style": ["casual", "formal","modern","vintage"],
+     "pattern": ["plain", "solid"],
+     "color": ["blue", "white","brown"],
+     "occasion": ["office", "casual","formal"],
+     "type": ["top","bottom","shirt","jacket"],
+     "material": ["cotton", "denim","polyester"]
+   },
+   {
+     "id": "6",
+     "image_url": "https://i.pinimg.com/564x/fb/9d/e8/fb9de81e122eda650ecbb53c778122c2.jpg",
+     "style": ["casual", "formal","modern","minimalist"],
+     "pattern": ["plain", "solid","stripe"],
+     "color": ["blue", "white","black","brown"],
+     "occasion": ["office", "casual"],
+     "type": ["Top","Bottom","Shirt","jacket","bag"],
+     "material": ["cotton", "linen","denim","polyester"]
+   },
+   {
+     "id": "7",
+     "image_url": "https://i.pinimg.com/564x/ca/af/ac/caafacf94ffc6f33d3ec73fe2b68466d.jpg",
+     "style": ["casual", "formal","elegant","classic"],
+     "pattern": ["plain", "solid"],
+     "color": ["black", "grey"],
+     "occasion": ["office", "casual","date night","party"],
+     "type": ["top","bottom","skirt"],
+     "material": ["cotton", "wool"]
+   },
+   {
+     "id": "8",
+     "image_url": "https://i.pinimg.com/236x/44/4a/fd/444afd50c0d896e3485f2d596116a9ec.jpg",
+     "style": ["casual", "formal","elegant","romantic","modern"],
+     "pattern": ["plain", "solid","geometric"],
+     "color": ["black", "white","grey"],
+     "occasion": ["office", "casual","party","date night"],
+     "type": ["top","bottom","skirt","jacket","bag"],
+     "material": ["cotton", "linen","wool"]
+   },
+   {
+     "id": "9",
+     "image_url": "https://i.pinimg.com/564x/60/6c/f4/606cf4b58d3615ae131a18918fe4f9be.jpg",
+     "style": ["casual", "modest","modern"],
+     "pattern": ["plain", "solid"],
+     "color": ["pink", "white"],
+     "occasion": ["office", "casual","travel","beach"],
+     "type": ["top","bottom","shirt"],
+     "material": ["cotton", "linen"]
+   },
+   {
+     "id": "10",
+     "image_url": "https://i.pinimg.com/564x/67/7e/ed/677eedcb81e7039b78f2ea85996e9fd1.jpg",
+     "style": ["casual", "formal","vintage","artsy","retro"],
+     "pattern": ["plain", "solid","checkered"],
+     "color": ["black", "grey"],
+     "occasion": ["office", "casual","date night","party"],
+     "type": ["top","bottom","skirt","hat","shoes","bag"],
+     "material": ["wool"]
+   },
+   {
+     "id": "11",
+     "image_url": "https://i.pinimg.com/564x/c4/ea/b2/c4eab238179b46b94d8571db4ae5c426.jpg",
+     "style": ["casual", "modern","minimalist"],
+     "pattern": ["plain", "solid","polka dots"],
+     "color": ["black", "beige"],
+     "occasion": ["beach", "casual","travel"],
+     "type": ["top","bottom"],
+     "material": ["cotton", "linen"]
+   },
+   {
+     "id": "12",
+     "image_url": "https://i.pinimg.com/564x/8a/4e/76/8a4e765062c716ba2540d06f88c10be0.jpg",
+     "style": ["casual", "modern","sporty","funky"],
+     "pattern": ["plain", "solid"],
+     "color": ["blue", "yellow"],
+     "occasion": ["beach", "casual"],
+     "type": ["t-shirt","shirt","shorts","shoes"],
+     "material": ["cotton","denim"]
+   },
+   {
+     "id": "13",
+     "image_url": "https://i.pinimg.com/564x/f5/4b/3a/f54b3a627e43735f39c00119e89314f3.jpg",
+     "style": ["casual", "modern","minimalist","casual street"],
+     "pattern": ["solid"],
+     "color": ["blue"],
+     "occasion": ["office", "casual","beach","travel"],
+     "type": ["jumpsuit"],
+     "material": ["denim"]
+   },
+   {
+     "id": "14",
+     "image_url": "https://i.pinimg.com/564x/4a/71/b0/4a71b08328b43dfc1ec6a0993aff73c0.jpg",
+     "style": ["casual", "minimalist","modern","casual street"],
+     "pattern": ["plain", "solid"],
+     "color": ["blue", "red"],
+     "occasion": ["office", "casual","beach","travel"],
+     "type": ["top","bottom","t-shirt","jeans"],
+     "material": ["wool", "denim"]
+   },
+   {
+     "id": "15",
+     "image_url": "https://i.pinimg.com/564x/46/7c/e4/467ce4bf3af72d277bb85450ebcf1962.jpg",
+     "style": ["casual", "modern","minimalist"],
+     "pattern": ["plain", "geometric"],
+     "color": ["blue", "white"],
+     "occasion": ["office", "casual","date night"],
+     "type": ["top","jeans","t-shirt","sweater"],
+     "material": ["wool", "denim"]
+   },
+   {
+     "id": "16",
+     "image_url": "https://i.pinimg.com/564x/c3/0e/cd/c30ecded88dec97bfd1d05db56f69864.jpg",
+     "style": ["casual", "casual street","modest","modern"],
+     "pattern": ["abstract", "solid"],
+     "color": ["green", "beige"],
+     "occasion": ["office", "Business Casual"],
+     "type": ["jacket","bottom","t-shirt"],
+     "material": ["cotton", "denim"]
+   },
+   {
+     "id": "17",
+     "image_url": "https://i.pinimg.com/564x/d5/53/b5/d553b51375fcd1ddb88f39286b4308bd.jpg",
+     "style": ["casual", "modern","casual street"],
+     "pattern": ["checkered", "solid"],
+     "color": ["blue", "beige","brown"],
+     "occasion": ["office", "casual","travel","beach"],
+     "type": ["top","bottom","t-hirt"],
+     "material": ["cotton", "denim","polyester"]
+   },
+   {
+     "id": "18",
+     "image_url": "https://i.pinimg.com/564x/fc/b2/f3/fcb2f3642db0d0a2cd10dc375ae7428c.jpg",
+     "style": ["casual", "modern","vintage","minimalist"],
+     "pattern": ["floral", "solid"],
+     "color": ["beige"],
+     "occasion": ["office", "casual","travel"],
+     "type": ["top","bottom"],
+     "material": ["wool", "linen"]
+   },
+   {
+     "id": "19",
+     "image_url": "https://i.pinimg.com/564x/54/77/ed/5477edba7ffe33e0ccea77ce4000b23d.jpg",
+     "style": ["casual", "formal","elegant","modern","romantic"],
+     "pattern": ["solid"],
+     "color": ["grey"],
+     "occasion": ["date night", "casual"],
+     "type": ["dress"],
+     "material": ["linen"]
+   },
+   {
+     "id": "20",
+     "image_url": "https://i.pinimg.com/564x/2b/a9/e7/2ba9e79d0e0af6167e7c46977bbca0a5.jpg",
+     "style": ["casual", "vintage","elegant"],
+     "pattern": ["floral"],
+     "color": ["beige"],
+     "occasion": ["beach", "casual","date night"],
+     "type": ["dress"],
+     "material": ["cotton"]
+   },
+   {
+     "id": "21",
+     "image_url": "https://i.pinimg.com/564x/f7/d8/bf/f7d8bffa9c4a94ebb1cf5309aee3135a.jpg",
+     "style": ["casual", "formal","sporty","modern"],
+     "pattern": [ "solid"],
+     "color": ["purple"],
+     "occasion": ["office", "casual","beach","date night","travel"],
+     "type": ["dress"],
+     "material": ["polyester"]
+   },
+   {
+     "id": "22",
+     "image_url": "https://i.pinimg.com/564x/5c/01/5e/5c015edfb89df1accd2e4d46e8f64e9b.jpg",
+     "style": ["casual", "modern","sporty","minimalist"],
+     "pattern": ["solid"],
+     "color": ["blue", "white"],
+     "occasion": ["office", "casual", "beach","travel"],
+     "type": ["Top","Bottom","Shirt"],
+     "material": ["polyester", "linen"]
+   },
+   {
+     "id": "23",
+     "image_url": "https://i.pinimg.com/564x/e8/be/44/e8be4490e51514361ae06273a8fa76f9.jpg",
+     "style": ["casual", "formal","elegant","romantic","glamorous"],
+     "pattern": [ "solid"],
+     "color": ["pink", "white"],
+     "occasion": ["office", "casual","party","date night"],
+     "type": ["skirt","blouse"],
+     "material": ["satin"]
+   },
+   {
+     "id": "24",
+     "image_url": "https://i.pinimg.com/564x/0d/78/f1/0d78f17e6cff48ddb8a9d5c558fe9b97.jpg",
+     "style": ["casual", "vintage","chic","modern"],
+     "pattern": ["animal print", "solid"],
+     "color": ["beige", "white"],
+     "occasion": ["office", "casual","party","date night"],
+     "type": ["top","skirt"],
+     "material": ["wool", "polyester"]
+   },
+   {
+     "id": "25",
+     "image_url": "https://i.pinimg.com/564x/c0/48/b7/c048b7eb5c47c07c0ccbc5c5e4af2b36.jpg",
+     "style": ["casual", "vintage","modern","elegant","chic"],
+     "pattern": ["floral"],
+     "color": ["orange"],
+     "occasion": ["office", "casual","beach"],
+     "type": ["dress"],
+     "material": ["satin"]
+   },
+   {
+     "id": "26",
+     "image_url": "https://i.pinimg.com/564x/f6/fb/cd/f6fbcd4c63f11ea8d2f6673dc34a534c.jpg",
+     "style": ["casual", "elegant","glamorous","vintage","traditional"],
+     "pattern": [ "solid"],
+     "color": ["red"],
+     "occasion": ["party", "date night","festival"],
+     "type": ["dress"],
+     "material": ["cotton"]
+   },
+   {
+     "id": "27",
+     "image_url": "https://i.pinimg.com/564x/f2/8e/3d/f28e3d544c55698b565109be6ceac1a5.jpg",
+     "style": ["casual", "traditional","elegant","vintage"],
+     "pattern": ["floral"],
+     "color": ["blue"],
+     "occasion": ["office", "casual","festival","party"],
+     "type": ["top","bottom"],
+     "material": ["cotton", "linen","chiffon"]
+   },
+   {
+     "id": "28",
+     "image_url": "https://i.pinimg.com/736x/b2/7b/c1/b27bc158adf59757fd568a3236a2e3f1.jpg",
+     "style": ["casual", "traditional","vintage","modest"],
+     "pattern": ["floral"],
+     "color": ["purple", "white"],
+     "occasion": ["office", "casual","festival","party"],
+     "type": ["top","bottom"],
+     "material": ["cotton", "linen"]
+   },
+   {
+     "id": "29",
+     "image_url": "https://i.pinimg.com/564x/79/56/29/79562908d57b727bc34e13e026bc0df1.jpg",
+     "style": ["casual", "traditional","modest","modern","boho-chic"],
+     "pattern": ["plain", "solid"],
+     "color": ["blue", "grey"],
+     "occasion": ["office", "casual","beach","travel"],
+     "type": ["top","jeans","shirt"],
+     "material": ["cotton", "denim"]
+   },
+   {
+     "id": "30",
+     "image_url": "https://i.pinimg.com/564x/a3/d2/ca/a3d2ca088136ba508df2db7e5ab79a11.jpg",
+     "style": ["casual", "bohemian","country","modest","classic"],
+     "pattern": ["floral"],
+     "color": ["green"],
+     "occasion": ["office", "casual","beach"],
+     "type": ["dress"],
+     "material": ["cotton", "linen"]
+   },
+   {
+     "id": "31",
+     "image_url": "https://i.pinimg.com/564x/61/34/af/6134af9037ee37a9373fe22d7e5ef05a.jpg",
+     "style": ["casual", "bohemian","country","modest","classic"],
+     "pattern": ["polka dots"],
+     "color": ["orange"],
+     "occasion": ["office", "casual","beach"],
+     "type": ["dress"],
+     "material": ["cotton", "linen"]
+   },
+   {
+     "id": "32",
+     "image_url": "https://i.pinimg.com/564x/58/84/2c/58842c9b550ab204b773a32b63b3ccf5.jpg",
+     "style": ["casual", "bohemian","country","modest","classic"],
+     "pattern": ["plain", "solid"],
+     "color": ["yellow"],
+     "occasion": ["office", "casual","beach"],
+     "type": ["dress"],
+     "material": ["cotton", "linen"]
+   },
+   {
+     "id": "33",
+     "image_url": "https://i.pinimg.com/564x/2b/df/83/2bdf83000f99aaf6b8c018b88b7ac980.jpg",
+     "style": ["casual", "formal","traditional","bohemian"],
+     "pattern": ["tie-dye"],
+     "color": ["purple", "white"],
+     "occasion": ["office", "casual","beach","travel"],
+     "type": ["top","bottom"],
+     "material": ["cotton", "linen"]
+   },
+   {
+     "id": "34",
+     "image_url": "https://i.pinimg.com/564x/70/d4/2b/70d42bb16d1334abf65815cd4099eabd.jpg",
+     "style": ["casual", "formal","traditional","modest","bohemian"],
+     "pattern": ["tie-dye"],
+     "color": ["red", "white"],
+     "occasion": ["office", "casual","formal","beach","travel"],
+     "type": ["top","bottom"],
+     "material": ["cotton", "linen"]
+   },
+   {
+     "id": "35",
+     "image_url": "https://i.pinimg.com/564x/1a/07/6e/1a076e9c3a43ec2304356f05537349dc.jpg",
+     "style": ["casual", "formal","bohemian","elegant","traditional","modest","country"],
+     "pattern": ["geometric", "solid","abstract"],
+     "color": ["blue", "white"],
+     "occasion": ["office", "casual","formal","party","festival","wedding"],
+     "type": ["earrings","blouse","necklace","saree"],
+     "material": ["cotton", "linen"]
+   },
+   {
+     "id": "36",
+     "image_url": "https://i.pinimg.com/564x/97/9a/a2/979aa2affdd79442a1ed62a881d1b153.jpg",
+     "style": ["casual", "formal","bohemian","elegant","traditional","modest","country"],
+     "pattern": ["geometric", "solid","abstract","floral"],
+     "color": ["black", "orange"],
+     "occasion": ["office", "Business Casual"],
+     "type": ["earrings","blouse","necklace","saree"],
+     "material": ["cotton", "linen"]
+   },
+   {
+     "id": "37",
+     "image_url": "https://i.pinimg.com/564x/76/29/dd/7629ddc493e91d01de6002cdf21444f9.jpg",
+     "style": ["casual", "sporty","streetwear","modern","punk","hipster","casual street"],
+     "pattern": [ "solid"],
+     "color": ["black", "white"],
+     "occasion": ["travel", "casual","athletic"],
+     "type": ["top","bottom","jacket","hat","shoes"],
+     "material": ["linen","polyester"]
+   },
+   {
+     "id": "38",
+     "image_url": "https://i.pinimg.com/564x/e2/b7/33/e2b73328d44d846f5fe70caeec5e2fc2.jpg",
+     "style": ["casual", "sporty","streetwear","modern","punk","hipster","casual street"],
+     "pattern": [ "solid"],
+     "color": ["black"],
+     "occasion": ["travel", "casual","athletic"],
+     "type": ["top","bottom","jacket","hat","shoes"],
+     "material": ["leather", "linen"]
+   },
+   {
+     "id": "39",
+     "image_url": "https://i.pinimg.com/564x/14/20/0d/14200d309d43923f7d2530e4b56ae751.jpg",
+     "style": ["casual", "sporty","streetwear","modern","punk","hipster","casual street","trendy"],
+     "pattern": ["checkered", "solid","plaid"],
+     "color": ["green", "white"],
+     "occasion": ["office","travel", "casual","athletic"],
+     "type": ["top","bottom","hat","shoes","shirt"],
+     "material": ["cotton", "linen"]
+   },
+   {
+     "id": "40",
+     "image_url": "https://i.pinimg.com/564x/11/d4/9d/11d49dd92c5f7541865a8485f36c76a9.jpg",
+     "style": ["casual", "sporty","streetwear","modern","punk","hipster","casual street","trendy"],
+     "pattern": ["checkered", "solid","plaid"],
+     "color": ["blue", "white","green"],
+     "occasion": ["office","travel", "casual","athletic"],
+     "type": ["top","bottom","shoes","shirt"],
+     "material": ["cotton", "linen","denim"]
+   },
+   {
+     "id": "41",
+     "image_url": "https://i.pinimg.com/564x/2b/cc/ec/2bccec687397c499c92c361f399fffe3.jpg",
+     "style": ["casual", "sporty","streetwear","modern","punk","hipster","casual street","trendy"],
+     "pattern": ["abstract", "solid"],
+     "color": ["beige", "white","pink"],
+     "occasion": ["office","travel", "casual","athletic"],
+     "type": ["top","bottom","shoes","shirt","hat"],
+     "material": ["cotton", "linen"]
+   },
+   {
+     "id": "42",
+     "image_url": "https://i.pinimg.com/564x/91/9e/7b/919e7b4bc2543f045225e928b49eed75.jpg",
+     "style": ["casual", "sporty","streetwear","modern","punk","hipster","casual street","trendy"],
+     "pattern": ["abstract", "solid","stripes"],
+     "color": ["blue", "white","green"],
+     "occasion": ["office","travel", "casual","athletic"],
+     "type": ["top","bottom","shoes","sweater","hat"],
+     "material": ["cotton", "linen","wool"]
+   },
+   {
+     "id": "43",
+     "image_url": "https://i.pinimg.com/564x/31/11/69/31116976bf29133e997cedc2eb118bf3.jpg",
+     "style": ["gothic","hipster","chic","edgy","trendy"],
+     "pattern": ["solid"],
+     "color": ["black"],
+     "occasion": ["party","date night"],
+     "type": ["dress","shoes","necklace"],
+     "material": ["leather"]
+   },
+   {
+     "id": "44",
+     "image_url": "https://i.pinimg.com/564x/a8/e6/75/a8e67504cae098c78a05bef3c0b204f4.jpg",
+     "style": ["gothic","hipster","chic","edgy","trendy","punk"],
+     "pattern": ["abstract", "solid"],
+     "color": ["black"],
+     "occasion": ["travel", "casual"],
+     "type": ["top","bottom","t-shirt"],
+     "material": ["cotton", "linen","denim"]
+   },
+   {
+     "id": "45",
+     "image_url": "https://i.pinimg.com/564x/af/f2/a1/aff2a11cfa1bffecaa255f543dff9374.jpg",
+     "style": ["casual", "urban","trendy","retro","vintage"],
+     "pattern": ["solid"],
+     "color": ["black", "orange"],
+     "occasion": ["office", "cCasual","travel"],
+     "type": ["top","bottom"],
+     "material": ["cotton", "linen"]
+   },
+   {
+     "id": "46",
+     "image_url": "https://i.pinimg.com/564x/81/8f/fa/818ffaedab64a8221debd8011b5895c0.jpg",
+     "style": ["casual", "urban","trendy","country","minimalist","bohemian"],
+     "pattern": ["floral" ,"solid"],
+     "color": ["purple", "beige"],
+     "occasion": ["office", "casual","beach"],
+     "type": ["top","skirt"],
+     "material": ["cotton", "linen"]
+   },
+   {
+     "id": "47",
+     "image_url": "https://i.pinimg.com/736x/4c/f7/98/4cf798e8652b66bbb8ef5164258a1158.jpg",
+     "style": ["casual", "trendy", "tomboy", "modern", "streetwear", "casual street", "surfer", "sporty"],
+     "pattern": [ "solid"],
+     "color": ["black", "white"],
+     "occasion": ["office", "casual", "athletic", "beach", "travel"],
+     "type": ["top","bottom","t-shirt", "jacket", "hat"],
+     "material": ["cotton", "linen", "polyester", "denim"]
+   },
+   {
+     "id": "48",
+     "image_url": "https://i.pinimg.com/564x/75/d8/62/75d862348e01e7f55187349c2ac66b08.jpg",
+     "style": ["casual", "trendy", "tomboy", "modern", "streetwear", "casual street", "surfer", "sporty"],
+     "pattern": ["stripes", "solid"],
+     "color": ["green", "white","brown","black"],
+     "occasion": ["office", "casual", "athletic", "beach", "travel"],
+     "type": ["top","bottom","t-shirt", "jacket", "hat"],
+     "material": ["cotton", "linen", "polyester", "denim"]
+   },
+   {
+     "id": "49",
+     "image_url": "https://i.pinimg.com/564x/51/2e/3a/512e3a1bcb2c7bb637c9274a76371907.jpg",
+     "style": [ "trendy", "tomboy", "modern", "streetwear", "casual street", "surfer", "sporty", "cyberpunk", "techwear"],
+     "pattern": [ "solid"],
+     "color": ["black"],
+     "occasion": ["athletic"],
+     "type": ["top","bottom","t-shirt", "jacket", "bag","shoes"],
+     "material": ["cotton", "polyester","denim"]
+   },
+   {
+     "id": "50",
+     "image_url": "https://i.pinimg.com/564x/f6/42/97/f64297de24bb534cc5ff4732148f6111.jpg",
+     "style": [ "trendy", "tomboy", "modern", "streetwear", "casual street", "surfer", "sporty", "cyberpunk", "techwear"],
+     "pattern": [ "solid"],
+     "color": ["black"],
+     "occasion": ["athletic"],
+     "type": ["top","bottom","t-shirt", "jacket","shoes"],
+     "material": ["cotton", "polyester","denim"]
+   }
+ ]
+
