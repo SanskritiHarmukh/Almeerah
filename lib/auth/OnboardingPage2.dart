@@ -21,6 +21,7 @@ class _OnboardingPage2State extends State<OnboardingPage2> {
   List<String> stylePreferences = ['Casual',
     'Formal',
     'Sporty',
+    'Modest',
     'Bohemian',
     'Vintage',
     'Streetwear',
