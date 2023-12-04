@@ -9,8 +9,9 @@ import 'package:almeerah/Theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'Pages/HomePage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'Pages/ZodiacOutfit.dart';
 
 Future main() async {
@@ -18,11 +19,30 @@ Future main() async {
   await Firebase.initializeApp();
   SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(statusBarColor: Colors.transparent));
-  runApp(MyApp());
+
+  String? userId = await getUserId(); // Fetch the user ID
+
+  runApp(MyApp(userId: userId));
+}
+
+Future<String?> getUserId() async {
+  // Fetch the user ID from Firebase Authentication
+  User? user = FirebaseAuth.instance.currentUser;
+
+  if (user != null) {
+    // User is signed in
+    String userId = user.uid;
+    return userId;
+  } else {
+    // User is not signed in
+    return null;
+  }
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final String? userId;
+
+  const MyApp({Key? key, required this.userId}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -33,20 +53,26 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MainPage(),
+      home: widget.userId != null
+          ? MyCloset(userId: widget.userId!)
+          : MainPage(),
       routes: {
         '/fashion': (context) => FashionTipsPage(),
         '/ngo': (context) => NGOPage(),
         '/ootd': (context) => CalendarPage(),
         '/zodiac': (context) => ZodiacOutfit(),
         '/fav': (context) => FavPage(),
-        '/closet': (context) => MyCloset(),
+        '/closet': (context) => MyCloset(userId: widget.userId ?? ''),
         '/login': (context) => LoginPage(),
       },
       theme: lightMode,
       darkTheme: darkMode,
     );
   }
+
+
+    // Fetch the user ID from Firebase Authentication
+
 }
 class BottomTabBar extends StatefulWidget {
   BottomTabBar({Key? key}) : super(key: key);
@@ -91,8 +117,3 @@ class _BottomTabBarState extends State<BottomTabBar> {
             ]));
   }
 }
-
-
-
-
-
