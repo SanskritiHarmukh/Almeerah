@@ -1,3 +1,4 @@
+import 'package:almeerah/Pages/HomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_calendar/flutter_clean_calendar.dart';
 import 'dart:math';
@@ -65,6 +66,16 @@ class _CalendarPageState extends State<CalendarPage> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
+        leading: IconButton(
+          iconSize: 32,
+          icon: Icon(Icons.chevron_left_outlined),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => HomePage()),
+            );
+          },
+        ),
         title: Text('Calendar',style: TextStyle(color: Theme.of(context).colorScheme.primary),),
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.background,

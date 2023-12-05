@@ -1,5 +1,6 @@
 import 'package:almeerah/Components/customTextstyle.dart';
 import 'package:almeerah/Pages/ArticlePage.dart';
+import 'package:almeerah/Pages/HomePage.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,16 @@ class _FashionTipsPageState extends State<FashionTipsPage> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
+        leading: IconButton(
+          iconSize: 32,
+          icon: Icon(Icons.chevron_left_outlined),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => HomePage()),
+            );
+          },
+        ),
         backgroundColor: Theme.of(context).colorScheme.background,
         elevation: 2,
         title: Text('Fashion Tips',style: TextStyle(color: Theme.of(context).colorScheme.primary),),

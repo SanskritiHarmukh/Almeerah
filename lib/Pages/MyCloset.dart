@@ -1,8 +1,10 @@
 import 'dart:io';
+import 'package:almeerah/Components/customTextstyle.dart';
 import 'package:almeerah/Pages/HomePage.dart';
 import 'package:almeerah/auth/MainPage.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ClothingItem {
@@ -63,42 +65,109 @@ class _MyClosetState extends State<MyCloset> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        title: Text('MY CLOSET'),
+        backgroundColor: Theme.of(context).colorScheme.background,
+        title: Text('My Closet'),
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          iconSize: 32,
+          icon: Icon(Icons.chevron_left_outlined),
           onPressed: () {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => MainPage()),
+              MaterialPageRoute(builder: (context) => HomePage()),
             );
           },
         ),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-              itemCount: closet.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(closet[index].type),
-                  subtitle: Text(closet[index].color),
-                  leading: Image.file(File(closet[index].imagePath)),
-                );
-              },
+      body: closet.length == 0
+          ? Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Center(
+        child: GestureDetector(
+            onTap: () {
+              _showImagePicker(context);
+            },
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.photo_camera_outlined),
+                SizedBox(height: 8,),
+                Text('Add your outfits and accessories to easily manage them.',
+                  textAlign: TextAlign.center,style: CustomTextStyles.paragraphTextStyle(context),)
+              ],
             ),
-          ),
+        ),),
+          )
+          : Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+            Align(
+              alignment: Alignment.topRight,
+              child: GestureDetector(
+                onTap: () {
+    _showImagePicker(context);
+    },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Text('Items in Virtual Wardrobe: '),
+                        Text(closet.length.toString()),
+                      ],
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(12),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.photo_camera_outlined,size: 24,),
+                            Text('Add Item',style: CustomTextStyles.actionTextStyle(context),)
+                          ],
+                        )),
+                  ],
+                ),
+              ),
+            ),
+            Expanded(
+              child: MasonryGridView.count(
+                crossAxisCount: 2,
+                mainAxisSpacing: 4,
+                crossAxisSpacing: 4,
+                itemCount: closet.length,
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(8) ,
+                          child: Image.file(File(closet[index].imagePath))),
+                      SizedBox(height: 4,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(closet[index].type),
+                          Text(closet[index].color)
+                        ],
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _showImagePicker(context);
-        },
-        child: Icon(Icons.camera_alt),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+          ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     _showImagePicker(context);
+      //   },
+      //   child: Icon(Icons.camera_alt),
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 
@@ -106,12 +175,17 @@ class _MyClosetState extends State<MyCloset> {
     try {
       final picker = ImagePicker();
       final XFile? pickedFile = await showModalBottomSheet(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+        ),
+        backgroundColor: Theme.of(context).colorScheme.background,
+        elevation: 4,
         context: context,
         builder: (BuildContext context) {
           return Wrap(
             children: <Widget>[
               ListTile(
-                leading: Icon(Icons.photo_library),
+                leading: Icon(Icons.photo_library_outlined),
                 title: Text('Choose from Gallery'),
                 onTap: () async {
                   Navigator.pop(
@@ -121,7 +195,7 @@ class _MyClosetState extends State<MyCloset> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.camera_alt),
+                leading: Icon(Icons.photo_camera_outlined),
                 title: Text('Take a Photo'),
                 onTap: () async {
                   Navigator.pop(
@@ -151,8 +225,12 @@ class _MyClosetState extends State<MyCloset> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Enter Clothing Details'),
-          content: Column(
+          //shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16))),
+          scrollable: true,
+          backgroundColor: Theme.of(context).colorScheme.background,
+          elevation: 4,
+          title: Text('Enter Item Details',textAlign: TextAlign.center,),
+          content: ListView(
             children: [
               Image.file(File(pickedFile.path), height: 100),
               TextField(

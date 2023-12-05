@@ -1,3 +1,4 @@
+import 'package:almeerah/Pages/FashionTipsPage.dart';
 import 'package:flutter/material.dart';
 
 class ArticlePage extends StatelessWidget {
@@ -16,7 +17,18 @@ class ArticlePage extends StatelessWidget {
         fontWeight: FontWeight.w400,fontSize: 16);
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      appBar: AppBar(title: Text('Fashion Tips',
+      appBar: AppBar(
+        leading: IconButton(
+          iconSize: 32,
+          icon: Icon(Icons.chevron_left_outlined),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => FashionTipsPage()),
+            );
+          },
+        ),
+        title: Text('Fashion Tips',
         style: TextStyle(color: Theme.of(context).colorScheme.primary),)
         ,backgroundColor: Theme.of(context).colorScheme.background,centerTitle: true,),
       body: Padding(

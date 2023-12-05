@@ -9,6 +9,7 @@ import 'package:almeerah/Components/tipscontainer.dart';
 import 'package:almeerah/Pages/CalendarPage.dart';
 import 'package:almeerah/Pages/FashionTipsPage.dart';
 import 'package:almeerah/Pages/NGOPage.dart';
+import 'package:almeerah/Pages/RecommendationsPage.dart';
 import 'package:almeerah/Pages/ZodiacOutfit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -33,10 +34,10 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    super.initState();
     // Fetching the current user during initialization
     _user = _auth.currentUser!;
     _fetchUserData();
+    super.initState();
   }
   Future<void> _fetchUserData() async {
     try {
@@ -65,24 +66,16 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       drawer: CustomDrawer(),
       appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: (){
+                Navigator.pushReplacementNamed(context,'/profile');
+              },
+              icon: Icon(Icons.person_2_outlined))
+        ],
         elevation: 1,
         backgroundColor: Theme.of(context).colorScheme.background,
         title: Text("Allmeerah",style: TextStyle(color: Theme.of(context).colorScheme.primary),),
-        // Row(
-        //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-        //   children: [
-        //     // Icon(Icons.menu,color: Theme.of(context).colorScheme.primary,),
-        //     GestureDetector(
-        //         onTap: () async {
-        //           FirebaseAuth.instance.signOut();
-        //           Navigator.of(context).pushNamedAndRemoveUntil(
-        //             '/login',
-        //                 (Route<dynamic> route) => false,
-        //           );
-        //         },
-        //         child: Icon(Icons.logout_outlined,color: Theme.of(context).colorScheme.primary,)),
-        //   ],
-        // ),
         centerTitle: true,
       ),
       backgroundColor: Theme.of(context).colorScheme.background,
@@ -103,7 +96,7 @@ class _HomePageState extends State<HomePage> {
               Text('Tip of the day',style: CustomTextStyles.headingTextStyle(context),),
               SizedBox(height: 16,),
               tipsContainer(),
-              SizedBox(height: 24,),
+              SizedBox(height: 16,),
               Container(
                 width: pageWidth,
                 height: 128,
@@ -128,7 +121,7 @@ class _HomePageState extends State<HomePage> {
                           pageName: '/ngo'),
                       CategoryContainer(
                           categoryName: 'Faves',
-                          icon: Icons.star_border,
+                          icon: Icons.favorite_border_outlined,
                           pageName: '/fav'),
                       CategoryContainer(
                           categoryName: 'My Closet',
@@ -137,14 +130,29 @@ class _HomePageState extends State<HomePage> {
                     ]
                 ),
               ),
-              SizedBox(height: 24,),
-              Text('For You', style: CustomTextStyles.headingTextStyle(context),),
+              SizedBox(height: 16,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('For You', style: CustomTextStyles.headingTextStyle(context),),
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=> RecommendationsPage(
+                          gender: _userGender, userID: _user.uid)));
+                    },
+                    child: Row(children: [
+                      Text('See all', style: CustomTextStyles.paragraphTextStyle(context),),
+                      Icon(Icons.chevron_right_outlined,size: 20,),
+                    ],),
+                  )
+                ],
+              ),
               SizedBox(height: 8,),
-              Expanded(child: CustomGrid(gender: _userGender))
+              Expanded(child: CustomGrid(gender: _userGender,userID: _user.uid,)),
             ],
           ),
         ),
-      )
+      ),
     );
   }
 }

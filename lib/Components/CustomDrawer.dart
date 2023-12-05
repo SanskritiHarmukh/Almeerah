@@ -22,13 +22,13 @@ class CustomDrawer extends StatelessWidget {
               CustomListTile(
                   icon: Icons.person_2_outlined,
                   pageName: 'Profile',
-                  pageRouteName: '/ootd'),
+                  pageRouteName: '/profile'),
               CustomListTile(
                   icon: Icons.table_chart_outlined,
                   pageName: 'My Closet',
                   pageRouteName: '/closet'),
               CustomListTile(
-                  icon: Icons.star_border_outlined,
+                  icon: Icons.favorite_border_outlined,
                   pageName: 'Faves',
                   pageRouteName: '/fav'),
               CustomListTile(

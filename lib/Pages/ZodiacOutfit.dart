@@ -1,6 +1,8 @@
 import 'package:almeerah/Components/customTextstyle.dart';
 import 'package:flutter/material.dart';
 
+import 'HomePage.dart';
+
 class ZodiacOutfit extends StatefulWidget {
   const ZodiacOutfit({Key? key}) : super(key: key);
 
@@ -223,6 +225,16 @@ class _ZodiacOutfitState extends State<ZodiacOutfit> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
+        leading: IconButton(
+          iconSize: 32,
+          icon: Icon(Icons.chevron_left_outlined),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => HomePage()),
+            );
+          },
+        ),
         elevation: 2,
        backgroundColor: Theme.of(context).colorScheme.background,
         title: Text("Zodiac Outfit and Horoscope"),
