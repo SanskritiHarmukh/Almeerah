@@ -12,6 +12,7 @@ import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'Pages/HomePage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'Pages/ProfilePage.dart';
 import 'Pages/ZodiacOutfit.dart';
 
 Future main() async {
@@ -53,17 +54,16 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: widget.userId != null
-          ? MyCloset(userId: widget.userId!)
-          : MainPage(),
+      home: MainPage(),
       routes: {
         '/fashion': (context) => FashionTipsPage(),
         '/ngo': (context) => NGOPage(),
         '/ootd': (context) => CalendarPage(),
         '/zodiac': (context) => ZodiacOutfit(),
-        '/fav': (context) => FavPage(),
+        '/fav': (context) => FavPage(userId: widget.userId  ?? ''),
         '/closet': (context) => MyCloset(userId: widget.userId ?? ''),
         '/login': (context) => LoginPage(),
+        '/profile': (context) => ProfilePage(userId: widget.userId  ?? ''),
       },
       theme: lightMode,
       darkTheme: darkMode,

@@ -1,26 +1,34 @@
+import 'package:almeerah/Pages/OutfitDetails.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
-class CustomGrid extends StatelessWidget {
+class CustomGrid extends StatefulWidget {
   final String gender;
-  const CustomGrid({super.key, required this.gender});
+  final String userID;
+  const CustomGrid({super.key, required this.gender, required this.userID});
 
+  @override
+  State<CustomGrid> createState() => _CustomGridState();
+}
+
+class _CustomGridState extends State<CustomGrid> {
+  late List<bool> isFavList;
+  void initState() {
+    isFavList = [];
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: gender == 'Male' || gender == 'Female'
-          ? FirebaseFirestore.instance.collection('recommendations').doc(gender)
+      stream: widget.gender == 'Male' || widget.gender == 'Female'
+          ? FirebaseFirestore.instance.collection('recommendations').doc(widget.gender)
           .collection('recommendations')
           .snapshots()
           : FirebaseFirestore.instance
           .collection('recommendations')
           .snapshots(),
-      // FirebaseFirestore.instance
-      //     .collection('recommendation')
-      //     .doc(gender)
-      //     .collection('recommendations')
-      //     .snapshots(),
+
 
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -33,21 +41,27 @@ class CustomGrid extends StatelessWidget {
         }
         // Snapshot has data
         List<DocumentSnapshot> documents = snapshot.data!.docs;
-        return MasonryGridView.builder(
+        isFavList = List.filled(documents.length, false);
+        return MasonryGridView.count(
+          crossAxisCount: 2,
+          mainAxisSpacing: 4,
+          crossAxisSpacing: 4,
           itemCount: documents.length,
-          gridDelegate: const SliverSimpleGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,),
+          //gridDelegate: const SliverMasonryGrid(crossAxisCount: 2,mainAxisSpacing: 2,crossAxisSpacing: 4,),
           itemBuilder: (context,index) {
             var imageUrl = documents[index]['image_url'];
+
             return Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(4.0),
               child: GestureDetector(
                 onTap: () {
-                      // Handle onTap
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (BuildContext context)=>OutfitDetails(itemID: documents[index].id)));
                       },
                 child: Stack(
                   children: [
                     ClipRRect(
-                      borderRadius: BorderRadius.circular(4),
+                      borderRadius: BorderRadius.circular(8),
                       child: Image.network(
                         imageUrl,
                          fit: BoxFit.cover,
@@ -56,13 +70,24 @@ class CustomGrid extends StatelessWidget {
                         ),
                     ),
                     Positioned(
-                      top: 8,
-                      right: 8,
-                      child: IconButton(
-                        icon: Icon(Icons.favorite_border_outlined),
-                      onPressed: () {
-                      // Handle fav button press
-                      },
+                      top: 4,
+                      right: 4,
+                      child: GestureDetector(
+                        child: isFavList[index]
+                            ? Icon(Icons.favorite, color: Colors.red,size: 24,)
+                            : Icon(Icons.favorite_border_outlined,size: 24,),
+                        onTap: () {
+                          String userId = widget.userID;
+                          setState(() {
+                            isFavList[index] = !isFavList[index]; // Toggle the selection state
+                          });
+                          if (isFavList[index]) {
+                            addToFav(userId,imageUrl);
+                          } else {
+                            // Remove the data from the fav collection
+                            removeFromFav(userId,imageUrl);
+                          }
+                        },
                       ),
                     ),
                   ],
@@ -71,93 +96,47 @@ class CustomGrid extends StatelessWidget {
             );
           });
 
-        // return StaggeredGridView.countBuilder(
-        //   crossAxisCount: 4,
-        //   itemCount: documents.length,
-        //   itemBuilder: (BuildContext context, int index) {
-        //     // Build your grid item using documents[index]
-        //     return YourGridItemWidget(data: documents[index]);
-        //   },
-        //   staggeredTileBuilder: (int index) =>
-        //       StaggeredTile.count(2, index.isEven ? 2 : 1),
-        //   mainAxisSpacing: 4.0,
-        //   crossAxisSpacing: 4.0,
-        // );
+
       },
     );
   }
 }
 
-// class YourGridItemWidget extends StatelessWidget {
-//   final DocumentSnapshot data;
-//
-//   YourGridItemWidget({required this.data});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     // Customize how you want to display each grid item using the data
-//     return Container(
-//       // Your grid item content
-//     );
-//   }
-// }
-// body: FutureBuilder<QuerySnapshot>(
-// future: widget.userGender == 'male' || widget.userGender == 'female'
-// ? FirebaseFirestore.instance
-//     .collection('recommendations')
-//     .doc(widget.userGender)
-//     .collection('recommendations')
-//     .get()
-//     : FirebaseFirestore.instance
-//     .collection('recommendations')
-//     .get(),
-// builder: (context, snapshot) {
-// if (snapshot.connectionState == ConnectionState.waiting) {
-// return CircularProgressIndicator();
-// } else if (snapshot.hasError) {
-// return Text('Error: ${snapshot.error}');
-// } else {
-// var data = snapshot.data!.docs;
-//
-// return StaggeredGridView.builder(
-// gridDelegate: SliverStaggeredGridDelegateWithMaxCrossAxisExtent(
-// maxCrossAxisExtent: 200,
-// mainAxisSpacing: 8,
-// crossAxisSpacing: 8,
-// ),
-// itemCount: data.length,
-// itemBuilder: (context, index) {
-// var imageUrl = data[index]['image_url'];
-// return GestureDetector(
-// onTap: () {
-// // Handle onTap
-// },
-// child: Stack(
-// children: [
-// // Your image here
-// Image.network(
-// imageUrl,
-// fit: BoxFit.cover,
-// width: double.infinity,
-// height: double.infinity,
-// ),
-// // Fav button on top
-// Positioned(
-// top: 8,
-// right: 8,
-// child: IconButton(
-// icon: Icon(Icons.favorite),
-// onPressed: () {
-// // Handle fav button press
-// },
-// color: Colors.red,
-// ),
-// ),
-// ],
-// ),
-// );
-// },
-// );
-// }
-// },
-// ),
+void addToFav(String userId, String imageUrl) {
+  FirebaseFirestore.instance
+      .collection('users')
+      .doc(userId)
+      .collection('fav')
+      .add({
+    'image_url': imageUrl,
+    'timestamp': FieldValue.serverTimestamp(),
+  })
+      .then((value) {
+    print('Added to fav: $imageUrl');
+  })
+      .catchError((error) {
+    print('Error adding to fav: $error');
+  });
+}
+
+void removeFromFav(String userId, String imageUrl) {
+  FirebaseFirestore.instance
+      .collection('users') // Replace 'users' with your user collection name
+      .doc(userId)
+      .collection('fav')
+      .where('image_url', isEqualTo: imageUrl)
+      .get()
+      .then((querySnapshot) {
+    querySnapshot.docs.forEach((doc) {
+      doc.reference.delete().then((value) {
+        print('Removed from fav: $imageUrl');
+      }).catchError((error) {
+        print('Error removing from fav: $error');
+      });
+    });
+  })
+      .catchError((error) {
+    print('Error getting documents: $error');
+  });
+}
+

@@ -5,6 +5,7 @@ import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../Components/customcontainer.dart';
+import 'HomePage.dart';
 
 class NGOPage extends StatefulWidget {
   const NGOPage({Key? key}) : super(key: key);
@@ -25,6 +26,16 @@ class _NGOPageState extends State<NGOPage> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
+        leading: IconButton(
+          iconSize: 32,
+          icon: Icon(Icons.chevron_left_outlined),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => HomePage()),
+            );
+          },
+        ),
         backgroundColor: Theme.of(context).colorScheme.background,
         elevation: 2,
         title: Text('NGO',style: TextStyle(color: Theme.of(context).colorScheme.primary),),
