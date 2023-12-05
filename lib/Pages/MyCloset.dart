@@ -35,7 +35,6 @@ class _MyClosetState extends State<MyCloset> {
   @override
   void initState() {
     super.initState();
-    // Initialize the closet collection for the specific user
     closetCollection =
         FirebaseFirestore.instance.collection('users').doc(widget.userId).collection('mycloset');
     _loadClosetData();
@@ -85,32 +84,32 @@ class _MyClosetState extends State<MyCloset> {
           ? Padding(
             padding: const EdgeInsets.all(8.0),
             child: Center(
-        child: GestureDetector(
-            onTap: () {
-              _showImagePicker(context);
-            },
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.photo_camera_outlined),
-                SizedBox(height: 8,),
-                Text('Add your outfits and accessories to easily manage them.',
-                  textAlign: TextAlign.center,style: CustomTextStyles.paragraphTextStyle(context),)
-              ],
-            ),
-        ),),
+            child: GestureDetector(
+              onTap: () {
+                _showImagePicker(context);
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.photo_camera_outlined),
+                  SizedBox(height: 8,),
+                  Text('Add your outfits and accessories to easily manage them.',
+                    textAlign: TextAlign.center,style: CustomTextStyles.paragraphTextStyle(context),)
+                ],
+              ),
+            ),),
           )
           : Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-            Align(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Align(
               alignment: Alignment.topRight,
               child: GestureDetector(
                 onTap: () {
-    _showImagePicker(context);
-    },
+                _showImagePicker(context);
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -145,7 +144,7 @@ class _MyClosetState extends State<MyCloset> {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(8) ,
                           child: Image.file(File(closet[index].imagePath))),
-                      SizedBox(height: 4,),
+                      SizedBox(height: 8,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -230,7 +229,7 @@ class _MyClosetState extends State<MyCloset> {
           backgroundColor: Theme.of(context).colorScheme.background,
           elevation: 4,
           title: Text('Enter Item Details',textAlign: TextAlign.center,),
-          content: ListView(
+          content: Column(
             children: [
               Image.file(File(pickedFile.path), height: 100),
               TextField(

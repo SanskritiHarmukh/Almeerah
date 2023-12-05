@@ -33,7 +33,7 @@ class CustomDrawer extends StatelessWidget {
                   pageRouteName: '/fav'),
               CustomListTile(
                   icon: Icons.calendar_month_outlined,
-                  pageName: 'Ootfit Calendar',
+                  pageName: 'Outfit Calendar',
                   pageRouteName: '/ootd'),
               CustomListTile(
                   icon: Icons.tips_and_updates_outlined,

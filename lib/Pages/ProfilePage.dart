@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
+import 'dart:io';
 import 'HomePage.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -117,7 +117,8 @@ class _ProfilePageState extends State<ProfilePage> {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          closetDocuments.length == 0 ? Center() : Container(
+          closetDocuments.length == 0 ? Center() :
+          Container(
             height: 100,
             width: 100,
             child: GridView.builder(
@@ -128,18 +129,37 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               itemCount: closetDocuments.length,
               itemBuilder: (context, index) {
-                var imageUrl = closetDocuments[index]['imagePath'];
-                return GestureDetector(
-                  onTap: () {
-                    // Handle onTap
+                return FutureBuilder<DocumentSnapshot>(
+                  future: FirebaseFirestore.instance
+                      .collection('users')
+                      .doc(widget.userId)
+                      .collection('mycloset')
+                      .doc(closetDocuments[index].id)
+                      .get(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return CircularProgressIndicator();
+                    } else if (snapshot.hasError) {
+                      print('Error fetching closet image: ${snapshot.error}');
+                      return Center(child: Text('Error'));
+                    } else if (!snapshot.hasData || snapshot.data == null) {
+                      return Center(child: Text('No data available'));
+                    } else {
+                      var imagePath = (snapshot.data!.data() as Map<String, dynamic>)['imagePath'];
+                      return GestureDetector(
+                        onTap: () {
+                          // Handle onTap
+                        },
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.file(
+                            File(imagePath),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      );
+                    }
                   },
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: Image.network(
-                      imageUrl,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
                 );
               },
             ),
