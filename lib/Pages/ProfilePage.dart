@@ -1,3 +1,5 @@
+import 'package:almeerah/Components/customTextstyle.dart';
+import 'package:almeerah/Pages/RecommendationsPage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
@@ -57,7 +59,9 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.background,
         title: Text('Profile'),
         leading: IconButton(
           iconSize: 32,
@@ -71,99 +75,158 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
       ),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Text('Details'),
+          Text('Details',style: CustomTextStyles.paragraphTextStyle(context),),
           SizedBox(height: 8,),
-          Text('Name: $userFName $userLName'),
+          Text('Name: $userFName $userLName',style: CustomTextStyles.paragraphTextStyle(context),),
+          SizedBox(height: 8,),
+          Text('Gender: $userGender',style: CustomTextStyles.paragraphTextStyle(context),),
+          SizedBox(height: 8,),
+          Text('Style Preference:',style: CustomTextStyles.paragraphTextStyle(context),),
+          Wrap(
+            alignment: WrapAlignment.center,
+            spacing: 8,
+            runSpacing: 4,
+            children: stylePreference.map((data) => Chip(
+              backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(.25),
+                label: Text(data,style: CustomTextStyles.actionTextStyle(context),))).toList(),),
+          SizedBox(height: 16,),
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              'Favorites',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-          ),
-          favDocuments.length == 0 ? Center() : Container(
-            height: 100,
-            width: 100,
-            child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 8,
-                mainAxisSpacing: 8,
-              ),
-              itemCount: favDocuments.length,
-              itemBuilder: (context, index) {
-                var imageUrl = favDocuments[index]['image_url'];
-                return GestureDetector(
-                  onTap: () {
-                    // Handle onTap
-                  },
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: Image.network(
-                      imageUrl,
-                      fit: BoxFit.cover,
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                //fav
+                Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Favorites',
+                        style: CustomTextStyles.paragraphTextStyle(context),
+                      ),
                     ),
-                  ),
-                );
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              'My Closet',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-          ),
-          closetDocuments.length == 0 ? Center() :
-          Container(
-            height: 100,
-            width: 100,
-            child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 8,
-                mainAxisSpacing: 8,
-              ),
-              itemCount: closetDocuments.length,
-              itemBuilder: (context, index) {
-                return FutureBuilder<DocumentSnapshot>(
-                  future: FirebaseFirestore.instance
-                      .collection('users')
-                      .doc(widget.userId)
-                      .collection('mycloset')
-                      .doc(closetDocuments[index].id)
-                      .get(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return CircularProgressIndicator();
-                    } else if (snapshot.hasError) {
-                      print('Error fetching closet image: ${snapshot.error}');
-                      return Center(child: Text('Error'));
-                    } else if (!snapshot.hasData || snapshot.data == null) {
-                      return Center(child: Text('No data available'));
-                    } else {
-                      var imagePath = (snapshot.data!.data() as Map<String, dynamic>)['imagePath'];
-                      return GestureDetector(
-                        onTap: () {
-                          // Handle onTap
+                    favDocuments.length == 0 ? Center(
+                      child: GestureDetector(
+                        onTap: (){
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context)=> RecommendationsPage(
+                              gender: userGender, userID: widget.userId)));
                         },
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8),
-                          child: Image.file(
-                            File(imagePath),
-                            fit: BoxFit.cover,
-                          ),
+                        child: Column(
+                          children: [
+                            Icon(Icons.double_arrow_outlined),
+                            Text('See Recommendations')
+                          ],
                         ),
-                      );
-                    }
-                  },
-                );
-              },
+                      ),
+                    ) : Container(
+                      height: (MediaQuery.of(context).size.width/2)-16,
+                      width: (MediaQuery.of(context).size.width/2)-16,
+                      child: GridView.builder(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 2,
+                          mainAxisSpacing: 2,
+                        ),
+                        itemCount: favDocuments.length,
+                        itemBuilder: (context, index) {
+                          var imageUrl = favDocuments[index]['image_url'];
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.pushReplacementNamed(context, '/fav');
+                            },
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8),
+                              child: Image.network(
+                                imageUrl,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                //my closet
+                Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'My Closet',
+                        style: CustomTextStyles.paragraphTextStyle(context),
+                      ),
+                    ),
+                    closetDocuments.length == 0 ? Center(
+                      child: GestureDetector(
+                        onTap: (){
+                          Navigator.pushReplacementNamed(context, '/closet');
+                        },
+                        child: Column(
+                          children: [
+                            Icon(Icons.collections_outlined),
+                            Text('Manage Closet')
+                          ],
+                        ),
+                      ),
+                    ) :
+                    Container(
+                      height: (MediaQuery.of(context).size.width/2)-16,
+                      width: (MediaQuery.of(context).size.width/2)-16,
+                      child: GridView.builder(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 2,
+                          mainAxisSpacing: 2,
+                        ),
+                        itemCount: closetDocuments.length,
+                        itemBuilder: (context, index) {
+                          return FutureBuilder<DocumentSnapshot>(
+                            future: FirebaseFirestore.instance
+                                .collection('users')
+                                .doc(widget.userId)
+                                .collection('mycloset')
+                                .doc(closetDocuments[index].id)
+                                .get(),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState == ConnectionState.waiting) {
+                                return CircularProgressIndicator();
+                              } else if (snapshot.hasError) {
+                                print('Error fetching closet image: ${snapshot.error}');
+                                return Center(child: Text('Error'));
+                              } else if (!snapshot.hasData || snapshot.data == null) {
+                                return Center(child: Text('No data available'));
+                              } else {
+                                var imagePath = (snapshot.data!.data() as Map<String, dynamic>)['imagePath'];
+                                return GestureDetector(
+                                  onTap: () {
+                                    Navigator.pushReplacementNamed(context, '/closet');
+                                  },
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: Image.file(
+                                      File(imagePath),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                );
+                              }
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
+          
+          
+          
         ],
       ),
     );

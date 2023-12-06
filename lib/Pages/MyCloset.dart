@@ -91,7 +91,7 @@ class _MyClosetState extends State<MyCloset> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.photo_camera_outlined),
+                  Icon(Icons.add_a_photo_outlined),
                   SizedBox(height: 8,),
                   Text('Add your outfits and accessories to easily manage them.',
                     textAlign: TextAlign.center,style: CustomTextStyles.paragraphTextStyle(context),)
@@ -124,7 +124,7 @@ class _MyClosetState extends State<MyCloset> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.photo_camera_outlined,size: 24,),
+                            Icon(Icons.add_a_photo_outlined,size: 24,),
                             Text('Add Item',style: CustomTextStyles.actionTextStyle(context),)
                           ],
                         )),

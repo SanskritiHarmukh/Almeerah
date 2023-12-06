@@ -83,7 +83,14 @@ class _FavPageState extends State<FavPage> {
                     child: GestureDetector(
                       onTap: () {
                         Navigator.push(context,
-                            MaterialPageRoute(builder: (BuildContext context)=>OutfitDetails(itemID: favs[index].id)));
+                            MaterialPageRoute(builder: (BuildContext context)=>OutfitDetails(
+                              imageurl: favs[index]['image_url'],
+                              colors: favs[index]['color'],
+                              pattern: favs[index]['pattern'],
+                              style: favs[index]['style'],
+                              occasion: favs[index]['occasion'],
+                              type: favs[index]['type'],
+                              material: favs[index]['material'],)));
                       },
                       child: Stack(
                         children: [

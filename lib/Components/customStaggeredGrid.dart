@@ -56,7 +56,14 @@ class _CustomGridState extends State<CustomGrid> {
               child: GestureDetector(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (BuildContext context)=>OutfitDetails(itemID: documents[index].id)));
+                      MaterialPageRoute(builder: (BuildContext context)=>OutfitDetails(
+                        imageurl: documents[index]['image_url'],
+                      colors: documents[index]['color'],
+                      pattern: documents[index]['pattern'],
+                      style: documents[index]['style'],
+                      occasion: documents[index]['occasion'],
+                      type: documents[index]['type'],
+                      material: documents[index]['material'],)));
                       },
                 child: Stack(
                   children: [
@@ -82,7 +89,14 @@ class _CustomGridState extends State<CustomGrid> {
                             isFavList[index] = !isFavList[index]; // Toggle the selection state
                           });
                           if (isFavList[index]) {
-                            addToFav(userId,imageUrl);
+                            addToFav(userId,imageUrl,
+                              documents[index]['material'],
+                              documents[index]['style'],
+                              documents[index]['color'],
+                              documents[index]['type'],
+                               documents[index]['occasion'],
+                              documents[index]['pattern'],
+                               );
                           } else {
                             // Remove the data from the fav collection
                             removeFromFav(userId,imageUrl);
@@ -102,13 +116,19 @@ class _CustomGridState extends State<CustomGrid> {
   }
 }
 
-void addToFav(String userId, String imageUrl) {
+void addToFav(String userId, String imageUrl,List material, List style, List color, List type, List occasion,List pattern) {
   FirebaseFirestore.instance
       .collection('users')
       .doc(userId)
       .collection('fav')
       .add({
     'image_url': imageUrl,
+    'material': material,
+    'style': style,
+    'color': color,
+    'occasion': occasion,
+    'type': type,
+    'pattern': pattern,
     'timestamp': FieldValue.serverTimestamp(),
   })
       .then((value) {
