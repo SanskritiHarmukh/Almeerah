@@ -7,19 +7,20 @@ import 'HomePage.dart';
 
 class ProfilePage extends StatefulWidget {
   final String userId;
-  const ProfilePage({super.key, required this.userId});
+
+  const ProfilePage({Key? key, required this.userId}) : super(key: key);
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  late List<DocumentSnapshot> favDocuments;
-  late List<DocumentSnapshot> closetDocuments;
-  late String userFName;
-  late String userLName;
-  late String userGender;
-  late List stylePreference;
+  late List<DocumentSnapshot> favDocuments = [];
+  late List<DocumentSnapshot> closetDocuments = [];
+  late String userFName = '';
+  late String userLName = '';
+  late String userGender = '';
+  late List stylePreference = [];
 
   @override
   void initState() {
@@ -37,6 +38,7 @@ class _ProfilePageState extends State<ProfilePage> {
           .limit(4)
           .get();
       favDocuments = favSnapshot.docs;
+
       QuerySnapshot closetSnapshot = await FirebaseFirestore.instance
           .collection('users')
           .doc(widget.userId)
@@ -44,13 +46,18 @@ class _ProfilePageState extends State<ProfilePage> {
           .limit(4)
           .get();
       closetDocuments = closetSnapshot.docs;
-     DocumentSnapshot user = await FirebaseFirestore.instance.collection('users').doc(widget.userId).get();
-      setState(() {
-        userFName = user['firstname'];
-        userLName = user['lastname'];
-        userGender = user['gender'];
-        stylePreference = user['stylepreference'];
-      });
+
+      DocumentSnapshot user = await FirebaseFirestore.instance.collection('users').doc(widget.userId).get();
+      Map<String, dynamic>? userData = user.data() as Map<String, dynamic>?;
+
+      if (userData != null) {
+        setState(() {
+          userFName = userData['firstname'] ?? '';
+          userLName = userData['lastname'] ?? '';
+          userGender = userData['gender'] ?? '';
+          stylePreference = userData['stylepreference'] ?? [];
+        });
+      }
     } catch (e) {
       print('Error fetching data: $e');
     }
@@ -78,20 +85,22 @@ class _ProfilePageState extends State<ProfilePage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Text('Details',style: CustomTextStyles.paragraphTextStyle(context),),
+          Text('Details', style: CustomTextStyles.paragraphTextStyle(context)),
           SizedBox(height: 8,),
-          Text('Name: $userFName $userLName',style: CustomTextStyles.paragraphTextStyle(context),),
+          Text('Name: $userFName $userLName', style: CustomTextStyles.paragraphTextStyle(context)),
           SizedBox(height: 8,),
-          Text('Gender: $userGender',style: CustomTextStyles.paragraphTextStyle(context),),
+          Text('Gender: $userGender', style: CustomTextStyles.paragraphTextStyle(context)),
           SizedBox(height: 8,),
-          Text('Style Preference:',style: CustomTextStyles.paragraphTextStyle(context),),
+          Text('Style Preference:', style: CustomTextStyles.paragraphTextStyle(context)),
           Wrap(
             alignment: WrapAlignment.center,
             spacing: 8,
             runSpacing: 4,
             children: stylePreference.map((data) => Chip(
               backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(.25),
-                label: Text(data,style: CustomTextStyles.actionTextStyle(context),))).toList(),),
+              label: Text(data, style: CustomTextStyles.actionTextStyle(context)),
+            )).toList(),
+          ),
           SizedBox(height: 16,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -108,11 +117,14 @@ class _ProfilePageState extends State<ProfilePage> {
                         style: CustomTextStyles.paragraphTextStyle(context),
                       ),
                     ),
-                    favDocuments.length == 0 ? Center(
+                    favDocuments.length == 0
+                        ? Center(
                       child: GestureDetector(
-                        onTap: (){
-                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context)=> RecommendationsPage(
-                              gender: userGender, userID: widget.userId)));
+                        onTap: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) => RecommendationsPage(gender: userGender, userID: widget.userId)));
                         },
                         child: Column(
                           children: [
@@ -121,9 +133,10 @@ class _ProfilePageState extends State<ProfilePage> {
                           ],
                         ),
                       ),
-                    ) : Container(
-                      height: (MediaQuery.of(context).size.width/2)-16,
-                      width: (MediaQuery.of(context).size.width/2)-16,
+                    )
+                        : Container(
+                      height: (MediaQuery.of(context).size.width / 2) - 16,
+                      width: (MediaQuery.of(context).size.width / 2) - 16,
                       child: GridView.builder(
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
@@ -150,7 +163,6 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ],
                 ),
-                //my closet
                 Column(
                   children: [
                     Padding(
@@ -160,9 +172,10 @@ class _ProfilePageState extends State<ProfilePage> {
                         style: CustomTextStyles.paragraphTextStyle(context),
                       ),
                     ),
-                    closetDocuments.length == 0 ? Center(
+                    closetDocuments.length == 0
+                        ? Center(
                       child: GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           Navigator.pushReplacementNamed(context, '/closet');
                         },
                         child: Column(
@@ -172,10 +185,10 @@ class _ProfilePageState extends State<ProfilePage> {
                           ],
                         ),
                       ),
-                    ) :
-                    Container(
-                      height: (MediaQuery.of(context).size.width/2)-16,
-                      width: (MediaQuery.of(context).size.width/2)-16,
+                    )
+                        : Container(
+                      height: (MediaQuery.of(context).size.width / 2) - 16,
+                      width: (MediaQuery.of(context).size.width / 2) - 16,
                       child: GridView.builder(
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
@@ -224,12 +237,8 @@ class _ProfilePageState extends State<ProfilePage> {
               ],
             ),
           ),
-          
-          
-          
         ],
       ),
     );
   }
 }
-
