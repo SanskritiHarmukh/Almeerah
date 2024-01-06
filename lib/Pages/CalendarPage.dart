@@ -55,8 +55,7 @@ class _CalendarPageState extends State<CalendarPage> {
 
   @override
   void initState() {
-    // Set up events for the year 2023 as an example
-    setupEventsForYear(2023);
+    setupEventsForYear(2024);
     selectedEvent = events[selectedDay] ?? [];
     super.initState();
   }
